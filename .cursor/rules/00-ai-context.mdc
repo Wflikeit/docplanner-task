@@ -1,0 +1,13 @@
+# Cursor rules: AI context
+
+Always read and follow the shared context first:
+
+- `ai-context/_shared/README.md`
+- `ai-context/task-details.md`
+- `ai-context/frontend-skills/` (when working on UI)
+
+Only then apply any Cursor-specific behavior/preferences.
+
+When adding/changing rules:
+- Put canonical rules in `ai-context/_shared/README.md`
+- Keep this file as a thin pointer + any Cursor-only overrides
