@@ -18,7 +18,7 @@ import {
     OTODOM_SNAPSHOT_OUTPUT_KIND,
     type OtodomListingSnapshotItem,
     mergeOtodomDetailPayload,
-} from '../src/infrastructure/otodom/index.js'
+} from '../src/infrastructure/crawler/otodom/index.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PLAYWRIGHT_BROWSERS_PATH = join(__dirname, '..', '.pw-browsers')
@@ -61,7 +61,8 @@ function logInfo(message: string, extra?: unknown): void {
 }
 
 function logWarn(message: string, extra?: unknown): void {
-    const line = `[crawl:otodom] ${ts()} [WARN] ${message}`
+    const line = `[crawl:otodom] ${
+        ts()} [WARN] ${message}`
     if (extra !== undefined) console.warn(line, extra)
     else console.warn(line)
 }

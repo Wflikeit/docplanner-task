@@ -10,7 +10,7 @@ export type AiListingSearchResult = {
   city?: string | null
   priceMin?: number | null
   priceMax?: number | null
-  rooms?: number | null
+  roomsMin?: number | null
 }
 
 export function executeAiListingSearchMock(
@@ -34,7 +34,7 @@ export function executeAiListingSearchMock(
   if (text.includes('poznan')) out.city = 'Poznan'
   if (text.includes('wroclaw')) out.city = 'Wroclaw'
   if (/\b2\s*rooms?\b/.test(text) || /\btwo\s+rooms?\b/.test(text))
-    out.rooms = 2
+    out.roomsMin = 2
   if (text.includes('cheap') || text.includes('inexpensive') || text.includes('budget')) {
     out.priceMax = 3500
   }

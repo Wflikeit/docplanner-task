@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// Otodom (and future sources). Dedup: @@unique([source, externalId]) → import uses upsert.
+model Listing {
+  id             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  source         String    @db.VarChar(32)
+  externalId     String    @map("external_id") @db.VarChar(128)
+  /// Max length chosen so a full-column btree index fits InnoDB utf8mb4 key limit (3072 bytes → 767 chars).
+  sourceUrl      String    @map("source_url") @db.VarChar(767)
+  title          String    @db.VarChar(512)
+  description    String    @db.Text
+  priceAmount    Decimal?  @map("price_amount") @db.Decimal(14, 2)
+  priceCurrency  String?   @map("price_currency") @db.Char(3)
+  pricePerSqm    Decimal?  @map("price_per_sqm") @db.Decimal(12, 2)
+  areaSqm        Decimal?  @map("area_sqm") @db.Decimal(10, 2)
+  rooms          Int?      @map("rooms") @db.SmallInt
+  street         String?   @map("street") @db.VarChar(512)
+  city           String?   @map("city") @db.VarChar(256)
+  district       String?   @map("district") @db.VarChar(256)
+  region         String?   @map("region") @db.VarChar(256)
+  country        String    @map("country") @db.VarChar(128)
+  imageUrlsJson  Json      @map("image_urls_json")
+  attributesJson Json      @map("attributes_json")
+  tagsJson       Json?     @map("tags_json")
+  aiSummary      String?   @map("ai_summary") @db.Text
+  aiUpdatedAt    DateTime? @map("ai_updated_at") @db.DateTime(3)
+  aiWarningsJson Json?     @map("ai_warnings_json")
+  scrapedAt      DateTime  @map("scraped_at") @db.DateTime(3)
+
+  @@unique([source, externalId], map: "ux_listings_source_external")
+  @@index([city], map: "ix_listings_city")
+  @@index([region], map: "ix_listings_region")
+  @@index([priceAmount], map: "ix_listings_price_amount")
+  @@index([areaSqm], map: "ix_listings_area_sqm")
+  @@index([rooms], map: "ix_listings_rooms")
+  @@index([city, priceAmount], map: "ix_listings_city_price")
+  @@index([sourceUrl], map: "ix_listings_source_url")
+  @@map("listings")
+}

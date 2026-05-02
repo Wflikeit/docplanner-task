@@ -1,48 +1,19 @@
-import {
-  filterListings,
-  type ListingSearchCriteria,
-} from '../domain/listingSearch.js'
 import type { Listing } from '../domain/listing.js'
+import type { ListListingsQuery, ListingsPageResult } from './listingPageTypes.js'
 import type { ListingSourcePort } from './listingSourcePort.js'
 
-export type ListListingsQuery = ListingSearchCriteria & {
-  page: number
-  limit: number
-}
+export type { ListListingsQuery, ListingsPageResult } from './listingPageTypes.js'
 
-export type ListingsPageResult = {
-  items: Listing[]
-  total: number
-  page: number
-  pageSize: number
-}
-
-export function listListingsPage(
+export async function listListingsPage(
   source: ListingSourcePort,
   query: ListListingsQuery,
-): ListingsPageResult {
-  const criteria: ListingSearchCriteria = {
-    q: query.q,
-    city: query.city,
-    priceMin: query.priceMin,
-    priceMax: query.priceMax,
-    rooms: query.rooms,
-  }
-  const filtered = filterListings(source.getAll(), criteria)
-  const total = filtered.length
-  const start = (query.page - 1) * query.limit
-  const items = filtered.slice(start, start + query.limit)
-  return {
-    items,
-    total,
-    page: query.page,
-    pageSize: query.limit,
-  }
+): Promise<ListingsPageResult> {
+  return source.listPage(query)
 }
 
-export function getListingById(
+export async function getListingById(
   source: ListingSourcePort,
   id: string,
-): Listing | undefined {
+): Promise<Listing | undefined> {
   return source.getById(id)
 }

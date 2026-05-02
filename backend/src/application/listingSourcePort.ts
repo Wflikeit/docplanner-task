@@ -1,7 +1,10 @@
 import type { Listing } from '../domain/listing.js'
 
-/** Read-side access to listings — implemented by DB/cache/in-memory adapters. */
+import type { ListListingsQuery, ListingsPageResult } from './listingPageTypes.js'
+
+/** Read-side access to listings (MySQL via Prisma in production). */
 export type ListingSourcePort = {
-  getAll(): readonly Listing[]
-  getById(id: string): Listing | undefined
+  listPage(query: ListListingsQuery): Promise<ListingsPageResult>
+  /** `id` is the persisted listing primary key as a decimal string. */
+  getById(id: string): Promise<Listing | undefined>
 }

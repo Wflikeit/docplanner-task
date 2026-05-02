@@ -5,23 +5,40 @@
   "main": "dist/main.js",
   "scripts": {
     "dev": "tsx watch src/main.ts",
-    "build": "tsc -p tsconfig.build.json",
+    "build": "prisma generate && tsc -p tsconfig.build.json",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:migrate:dev": "prisma migrate dev",
+    "db:up": "cd .. && docker compose up -d",
+    "db:import": "npm run import:otodom:mysql",
+    "db:import:otodom": "npm run import:otodom:mysql",
+    "data:prepare": "npm run sanitize:otodom",
     "start": "node dist/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "tsx --test src/infrastructure/data-pipeline/otodom/sanitize/otodomSanitizedListing.test.ts src/infrastructure/data-pipeline/otodom/ai/llmInputTransformers.test.ts src/infrastructure/data-pipeline/otodom/import/mapToDbRow.test.ts src/infrastructure/data-pipeline/otodom/raw/listingSnapshot.test.ts src/infrastructure/persistence/domainListingFromPrisma.test.ts src/infrastructure/persistence/prismaListingUpsert.test.ts src/infrastructure/ai/otodomTagging.test.ts",
     "crawl:otodom": "tsx scripts/crawl-otodom-mock-once.ts",
-    "crawl:otodom:install": "PLAYWRIGHT_BROWSERS_PATH=./.pw-browsers npx playwright install chromium"
+    "crawl:otodom:install": "PLAYWRIGHT_BROWSERS_PATH=./.pw-browsers npx playwright install chromium",
+    "sanitize:otodom": "tsx scripts/sanitize-otodom-snapshot.ts",
+    "preview:otodom:tagging-inputs": "tsx scripts/preview-otodom-tagging-inputs.ts",
+    "tag:otodom:gemini": "tsx scripts/tag-otodom-with-gemini.ts",
+    "tag:otodom:gemini:test": "OTODOM_SANITIZED_PATH=data/test-data.sanitized.json OTODOM_TAGGING_OUT=data/test-data.tagged.json OTODOM_TAGGING_LIMIT=1 OTODOM_TAGGING_DELAY_MS=0 tsx scripts/tag-otodom-with-gemini.ts",
+    "import:otodom:mysql": "prisma generate && tsx scripts/import-otodom-listings-mysql.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^5.2.1"
+    "@prisma/client": "^6.19.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "zod": "^4.4.2"
   },
   "devDependencies": {
+    "@google/genai": "^1.51.0",
     "@types/express": "^5.0.6",
     "@types/node": "^25.6.0",
     "playwright": "^1.57.0",
+    "prisma": "^6.19.0",
     "tsx": "^4.21.0",
     "typescript": "^6.0.3"
   }

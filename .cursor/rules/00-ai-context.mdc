@@ -11,3 +11,7 @@ Only then apply any Cursor-specific behavior/preferences.
 When adding/changing rules:
 - Put canonical rules in `ai-context/_shared/README.md`
 - Keep this file as a thin pointer + any Cursor-only overrides
+
+## Playwright MCP (local URLs)
+
+When calling **`user-playwright`** tools (`browser_navigate`, snapshots, clicks, etc.) against this project’s dev servers, use **`http://localhost:`** plus the port (e.g. `http://localhost:5173`, `http://localhost:3000`), **not** `127.0.0.1`.

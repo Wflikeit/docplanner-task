@@ -13,14 +13,17 @@ export type ListingResource = {
   priceCurrency?: string | null
   city?: string | null
   district?: string | null
+  street?: string | null
   areaSqm?: number | null
   rooms?: number | null
   furnished?: boolean | null
-  isNewOffer?: boolean | null
   imageUrl?: string | null
   sourceUrl?: string | null
   externalId?: string | null
   createdAt?: string | null
+  aiTags?: string[] | null
+  aiSummary?: string | null
+  aiTaggingWarnings?: string[] | null
 }
 
 export type PaginatedListings = {
@@ -45,5 +48,5 @@ export type AiListingSearchResponse = {
   city?: string | null
   priceMin?: number | null
   priceMax?: number | null
-  rooms?: number | null
+  roomsMin?: number | null
 }
