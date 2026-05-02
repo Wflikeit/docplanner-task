@@ -117,13 +117,16 @@ This means:
 
 ## One key assumption
 
-Otodom exposes enough structured data through JSON-LD and page attributes to build a useful deterministic importer for an MVP.
+I assume that core listing usability does not depend on AI enrichment, and that
+features such as tagging or summaries can be computed asynchronously after ingestion without affecting the user experience.
 
 ## One success metric
 
-A practical success metric is:
+For the MVP, I focus on data usability as the primary success metric — the percentage
+of listings that are complete, non-duplicated and lead to valid pages.
 
-**Search-to-detail success rate** — the percentage of sessions where a user applies search or filters and opens at least one listing detail page within 60 seconds.
+In a real product, this would be complemented by a user-facing metric such as search-to-detail
+success rate, measuring whether users can find and open relevant listings.
 
 ## One limitation / failure mode
 
