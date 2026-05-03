@@ -115,6 +115,12 @@ This means:
 - LLM output can be regenerated later if prompts or models change,
 - AI tags can support natural-language or tag-based search without overwriting deterministic fields.
 
+**AI tagging vs AI search (same tag vocabulary, different jobs):**
+
+- **Offline tagging** (`npm run tag:otodom:gemini`) runs once per listing after sanitization. Gemini assigns **feature tag ids**, a short summary, and optional warnings; results land in `data/processed/otodom-listings.tagged.json` and are merged into MySQL at import (`tagsJson`, display chips on the detail page). This is **not** executed during a user search request.
+- **Tag-based listing search** uses those ids in **`GET /api/listings`**: query param **`tags`** is a comma-separated list; the SQL layer requires **every** selected tag on a row (AND). Users can also toggle the same ids in the UI filter chips.
+- **AI-assisted search** (`POST /api/listings/ai-search`, optional frontend flag) is a **separate** runtime Gemini call: it maps the user’s sentence plus current panel filters into **`mergedQuery`** (city, price, `q`, **`tags`**, etc.). The model may suggest **tag ids from that same controlled vocabulary**—it does not re-tag listings row-by-row; it only proposes filters, then the usual listing query runs.
+
 **Conversational search (optional UI):** the `POST /api/listings/ai-search` endpoint calls Gemini with **`activeFilters`** plus the **full conversation** (clamped by `AI_SEARCH_MAX_CONVERSATION_CHARS`, default 8000). The model returns a JSON patch merged on the server, then listing SQL runs. **Without `GEMINI_API_KEY`** (or with `AI_SEARCH_MOCK=1`) the handler uses a **reply-only stub** — it does not infer filters; set the key for real behaviour.
 
 ## Key assumption
@@ -123,7 +129,7 @@ This means:
 
 - I assume that core listing usability does not depend on AI enrichment.
 - I assume that features such as tagging or summaries can be computed asynchronously after ingestion, without affecting the user experience.
-  (but for MVP i populate DB with tags)
+  For the MVP, tags are still **precomputed** and stored so filters and search can use them without waiting on an LLM per page view.
 
 ## One success metric
 

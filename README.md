@@ -65,18 +65,14 @@ The user quickly finds a relevant house using structured filters.
 The user types:
 "I am looking for a premium house in city centre for family around Warszawa"
 
-1. The system sends the query to the AI search endpoint.
-2. The model maps the intent to:
-    - region/city: Warsaw area
-    - tags: quiet_area, near_forest
-    - priceMax: inferred low-to-mid range
+1. The system sends the message (and current structured filters from the panel) to **`POST /api/listings/ai-search`**.
+2. Gemini returns **`mergedQuery`** — e.g. city / region hints, **`tags`** from the **same id set** as offline tagging (`quiet_area`, `near_forest`, …), optional **`q`** keywords, price hints — plus **`reply`** and the first page of **`listings`**.
+3. The backend merges the patch with active filters and runs the usual **`GET /api/listings`**-style SQL (including **AND** semantics on `tags` when present).
 
-3. The backend merges these filters with the current state.
-
-4. The system returns matching listings.
+**Note:** those tag ids must already exist on rows from **offline tagging** at import time; AI search only **selects** among them as filters, it does not invent new per-row tags at read time.
 
 Result:
-The user gets relevant results without manually setting filters.
+The user gets relevant results without manually setting every filter.
 
 ## Data sanitization and processing
 
@@ -150,6 +146,12 @@ This means:
 - LLM output can be regenerated later if prompts or models change,
 - AI tags can support natural-language or tag-based search without overwriting deterministic fields.
 
+**AI tagging vs AI search (same tag vocabulary, different jobs):**
+
+- **Offline tagging** (`npm run tag:otodom:gemini`) runs once per listing after sanitization. Gemini assigns **feature tag ids**, a short summary, and optional warnings; results land in `data/processed/otodom-listings.tagged.json` and are merged into MySQL at import (`tagsJson`, display chips on the detail page). This is **not** executed during a user search request.
+- **Tag-based listing search** uses those ids in **`GET /api/listings`**: query param **`tags`** is a comma-separated list; the SQL layer requires **every** selected tag on a row (AND). Users can also toggle the same ids in the UI filter chips.
+- **AI-assisted search** (`POST /api/listings/ai-search`, optional frontend flag) is a **separate** runtime Gemini call: it maps the user’s sentence plus current panel filters into **`mergedQuery`** (city, price, `q`, **`tags`**, etc.). The model may suggest **tag ids from that same controlled vocabulary**—it does not re-tag listings row-by-row; it only proposes filters, then the usual listing query runs.
+
 **Conversational search (optional UI):** the `POST /api/listings/ai-search` endpoint calls Gemini with **`activeFilters`** plus the **full conversation** (clamped by `AI_SEARCH_MAX_CONVERSATION_CHARS`, default 8000). The model returns a JSON patch merged on the server, then listing SQL runs. **Without `GEMINI_API_KEY`** (or with `AI_SEARCH_MOCK=1`) the handler uses a **reply-only stub** — it does not infer filters; set the key for real behaviour.
 
 ## Key assumption
@@ -158,8 +160,7 @@ This means:
 
 - I assume that core listing usability does not depend on AI enrichment.
 - I assume that features such as tagging or summaries can be computed asynchronously after ingestion, without affecting the user experience.
-
-## One success metric
+- For the MVP, tags are still **precomputed** and stored so filters and search can use them without waiting on an LLM per page view.
 
 **MVP (data-focused)**
 

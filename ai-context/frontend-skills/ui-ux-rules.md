@@ -11,7 +11,7 @@ Focus: clarity, searchability, consistency.
 
 ## Search & filters
 
-- Prioritize 2–4 filters that matter for long-term rentals (e.g. city/district, price range, rooms, area).
+- Prioritize 2–4 filters that matter for **buying** (e.g. city/district, price range, rooms, area).
 - Keep filters reversible: easy “clear all” and per-filter clear.
 - Preserve user input on navigation back from details.
 - Make search shareable: reflect active search/filters in the URL (query params).
