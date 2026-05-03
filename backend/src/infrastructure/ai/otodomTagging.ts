@@ -1,5 +1,3 @@
-import {readFileSync} from 'node:fs'
-
 /**
  * AI search tagging for Otodom: allowed tag vocabulary + Gemini JSON parsing.
  * Keep in sync with `prompts/listing-tagging.prompt.md` (allowed list + output shape).
