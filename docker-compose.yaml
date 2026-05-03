@@ -1,0 +1,85 @@
+services:
+  # Stack: MySQL → prisma migrate → backend :3000 → frontend nginx (host port below, /api → backend).
+  # Browser: http://localhost:18080  (18080 avoids Cursor/IDE often binding :8080 on 127.0.0.1)
+  # prisma-migrate exits 0 when done — other services keep running.
+  mysql:
+    image: mysql:8.4
+    container_name: real-estate-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: real_estate
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-proot"]
+      interval: 3s
+      timeout: 5s
+      retries: 40
+      start_period: 20s
+
+  # After MySQL is healthy: `prisma migrate deploy` (single init migration: table + indexes).
+  prisma-migrate:
+    image: node:22-bookworm
+    working_dir: /app
+    environment:
+      DATABASE_URL: mysql://app:app@mysql:3306/real_estate
+    volumes:
+      - ./backend:/app
+      - prisma_migrate_node_modules:/app/node_modules
+    depends_on:
+      mysql:
+        condition: service_healthy
+    command:
+      [
+        "sh",
+        "-c",
+        "if [ ! -d node_modules/prisma ]; then npm ci; fi && npx prisma migrate deploy",
+      ]
+    restart: "no"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: real-estate-backend
+    # Secrets: gitignored files (not in Dockerfile). Same key in a later file overrides earlier ones.
+    env_file:
+      - path: .env
+        required: false
+      - path: backend/.env
+        required: false
+      - path: .env.local
+        required: false
+      - path: backend/.env.local
+        required: false
+    environment:
+      DATABASE_URL: mysql://app:app@mysql:3306/real_estate
+      PORT: "3000"
+    ports:
+      - "3000:3000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      prisma-migrate:
+        condition: service_completed_successfully
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # Enables AI search UI → `POST /api/listings/ai-search` (see `frontend/src/runtime/runtimeConfig.ts`).
+        VITE_AI_CONVERSATIONAL_SEARCH: "true"
+    container_name: real-estate-frontend
+    ports:
+      - "18080:80"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
+  prisma_migrate_node_modules:

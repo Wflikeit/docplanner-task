@@ -7,6 +7,7 @@
  * OTODOM_SNAPSHOT_PATH=data/test-data.json OTODOM_SANITIZED_OUT=data/test-data.sanitized.json npm run sanitize:otodom
  */
 import {readFileSync, mkdirSync, writeFileSync} from 'node:fs'
+import {performance} from 'node:perf_hooks'
 import {dirname, isAbsolute, join, relative} from 'node:path'
 import {fileURLToPath} from 'node:url'
 import process from 'node:process'
@@ -24,6 +25,7 @@ import {
     type OtodomSanitizedFileBody,
     type OtodomSanitizedListingItem,
 } from '../src/infrastructure/data-pipeline/otodom/index.js'
+import {createLogger} from '../src/infrastructure/logging/logger.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const BACKEND_ROOT = join(__dirname, '..')
@@ -57,27 +59,15 @@ const LIMIT: number | undefined =
               return n
           })()
 
+const log = createLogger('sanitize:otodom', {timestamps: true})
+
 type SnapshotFile = {
     meta: OtodomSnapshotMeta
     items: OtodomListingSnapshotItem[]
 }
 
-function ts(): string {
-    return new Date().toISOString()
-}
-
-function logInfo(message: string, extra?: unknown): void {
-    const line = `[sanitize:otodom] ${ts()} [INFO] ${message}`
-    if (extra !== undefined) console.log(line, extra)
-    else console.log(line)
-}
-
-function logError(message: string, err?: unknown): void {
-    console.error(`[sanitize:otodom] ${ts()} [ERROR] ${message}`, err)
-}
-
 function main(): void {
-    logInfo('Start', {
+    log.info('Start', {
         SNAPSHOT_PATH: pathForMeta(SNAPSHOT_PATH),
         OUT_PATH: pathForMeta(OUT_PATH),
         LIMIT: LIMIT ?? 'all',
@@ -116,13 +106,15 @@ function main(): void {
 
     mkdirSync(dirname(OUT_PATH), {recursive: true})
     writeFileSync(OUT_PATH, `${JSON.stringify(outDoc, null, 2)}\n`, 'utf8')
-    logInfo(`Wrote ${pathForMeta(OUT_PATH)} (${outItems.length} rows)`)
-    logInfo('Summary', {read, sanitized: outItems.length, skipped_unavailable: skippedUnavailable})
+    log.info(`Wrote ${pathForMeta(OUT_PATH)} (${outItems.length} rows)`)
+    log.info('Summary', {read, sanitized: outItems.length, skipped_unavailable: skippedUnavailable})
 }
 
 try {
+    const t0 = performance.now()
     main()
+    log.info(`ok · ${Math.round(performance.now() - t0)}ms`)
 } catch (e) {
-    logError('Script failed', e)
+    log.error('Script failed', e)
     process.exit(1)
 }

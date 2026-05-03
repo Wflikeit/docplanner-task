@@ -14,7 +14,7 @@
     "db:import:otodom": "npm run import:otodom:mysql",
     "data:prepare": "npm run sanitize:otodom",
     "start": "node dist/main.js",
-    "test": "tsx --test src/infrastructure/data-pipeline/otodom/sanitize/otodomSanitizedListing.test.ts src/infrastructure/data-pipeline/otodom/ai/llmInputTransformers.test.ts src/infrastructure/data-pipeline/otodom/import/mapToDbRow.test.ts src/infrastructure/data-pipeline/otodom/raw/listingSnapshot.test.ts src/infrastructure/persistence/domainListingFromPrisma.test.ts src/infrastructure/persistence/prismaListingUpsert.test.ts src/infrastructure/ai/otodomTagging.test.ts",
+    "test": "tsx --test src/infrastructure/data-pipeline/otodom/sanitize/otodomSanitizedListing.test.ts src/infrastructure/data-pipeline/otodom/ai/llmInputTransformers.test.ts src/infrastructure/data-pipeline/otodom/import/mapToDbRow.test.ts src/infrastructure/data-pipeline/otodom/raw/listingSnapshot.test.ts src/infrastructure/persistence/domainListingFromPrisma.test.ts src/infrastructure/persistence/prismaListingUpsert.test.ts src/infrastructure/ai/otodomTagging.test.ts src/infrastructure/ai/listingAiSearchGemini.test.ts src/application/listingAiSearchMerge.test.ts src/application/aiListingSearchUseCase.test.ts",
     "crawl:otodom": "tsx scripts/crawl-otodom-mock-once.ts",
     "crawl:otodom:install": "PLAYWRIGHT_BROWSERS_PATH=./.pw-browsers npx playwright install chromium",
     "sanitize:otodom": "tsx scripts/sanitize-otodom-snapshot.ts",
@@ -28,13 +28,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@google/genai": "^1.51.0",
     "@prisma/client": "^6.19.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "zod": "^4.4.2"
   },
   "devDependencies": {
-    "@google/genai": "^1.51.0",
     "@types/express": "^5.0.6",
     "@types/node": "^25.6.0",
     "playwright": "^1.57.0",

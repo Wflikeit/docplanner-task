@@ -141,18 +141,3 @@ export function geminiTaggingIndexFromValidatedBody(
     }
     return m
 }
-
-/**
- * Reads `tag-otodom-with-gemini.ts` output from disk.
- * @throws if the file is not valid {@link OtodomGeminiTaggingFileBody}.
- */
-export function readOtodomGeminiTaggingByExternalId(absPath: string): Map<string, OtodomGeminiTaggingPayload> {
-    const raw = readFileSync(absPath, 'utf8')
-    const parsed: unknown = JSON.parse(raw)
-    if (!isOtodomGeminiTaggingFileBody(parsed)) {
-        throw new Error(
-            `Not a valid Otodom Gemini tagging JSON (expected outputKind "${OTODOM_TAGGING_OUTPUT_KIND}"): ${absPath}`,
-        )
-    }
-    return geminiTaggingIndexFromValidatedBody(parsed)
-}

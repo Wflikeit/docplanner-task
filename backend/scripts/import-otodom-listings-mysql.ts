@@ -18,6 +18,7 @@
  * npm run import:otodom:mysql
  */
 import {existsSync, readFileSync} from 'node:fs'
+import {performance} from 'node:perf_hooks'
 import {dirname, isAbsolute, join, relative} from 'node:path'
 import {fileURLToPath} from 'node:url'
 import process from 'node:process'
@@ -33,6 +34,7 @@ import {
 import {buildPersistedRowsFromOtodomSanitizedAndTagging} from '../src/infrastructure/data-pipeline/otodom/index.js'
 import {isOtodomSanitizedFileBody} from '../src/infrastructure/data-pipeline/otodom/index.js'
 import {countListingsPrisma, upsertPersistedListingRowsPrisma} from '../src/infrastructure/persistence/prismaListingUpsert.js'
+import {createLogger} from '../src/infrastructure/logging/logger.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const BACKEND_ROOT = join(__dirname, '..')
@@ -54,15 +56,7 @@ function pathForLog(absPath: string): string {
 const DEFAULT_PROCESSED_SAN = join(BACKEND_ROOT, 'data', 'processed', 'otodom-listings.sanitized.json')
 const DEFAULT_PROCESSED_TAG = join(BACKEND_ROOT, 'data', 'processed', 'otodom-listings.tagged.json')
 
-function ts(): string {
-    return new Date().toISOString()
-}
-
-function logInfo(message: string, extra?: unknown): void {
-    const line = `[import:otodom:mysql] ${ts()} [INFO] ${message}`
-    if (extra !== undefined) console.log(line, extra)
-    else console.log(line)
-}
+const log = createLogger('import:otodom:mysql', {timestamps: true})
 
 /**
  * Resolves sanitized + tagged paths. Tagged file only carries `gemini` blobs — base rows always come from
@@ -92,7 +86,7 @@ function resolveImportPaths(): {sanPath: string; tagPath: string | null} {
                     const viaMeta = resolveBackendPath(ip)
                     if (existsSync(viaMeta)) {
                         sanPath = viaMeta
-                        logInfo('Sanitized path taken from tagged file meta.inputPath', {path: pathForLog(viaMeta)})
+                        log.info('Sanitized path taken from tagged file meta.inputPath', {path: pathForLog(viaMeta)})
                     }
                 }
             }
@@ -104,10 +98,6 @@ function resolveImportPaths(): {sanPath: string; tagPath: string | null} {
     return {sanPath, tagPath}
 }
 
-function logError(message: string, err?: unknown): void {
-    console.error(`[import:otodom:mysql] ${ts()} [ERROR] ${message}`, err)
-}
-
 async function main(): Promise<void> {
     if (!process.env.DATABASE_URL?.trim()) {
         throw new Error('DATABASE_URL must be set (MySQL connection string for Prisma).')
@@ -115,7 +105,7 @@ async function main(): Promise<void> {
 
     const {sanPath: SAN_PATH, tagPath: TAG_PATH} = resolveImportPaths()
 
-    logInfo('Start', {
+    log.info('Start', {
         SAN_PATH: pathForLog(SAN_PATH),
         TAG_PATH: TAG_PATH ? pathForLog(TAG_PATH) : '(none)',
     })
@@ -126,7 +116,7 @@ async function main(): Promise<void> {
         )
     }
     if (TAG_PATH === null) {
-        logInfo(
+        log.info(
             'No tagged JSON (set OTODOM_TAGGING_OUT or create data/processed/otodom-listings.tagged.json) — DB rows get no AI tags for this run.',
         )
     }
@@ -138,7 +128,7 @@ async function main(): Promise<void> {
     }
 
     const itemCount = parsed.items.length
-    logInfo(`Sanitized file has ${itemCount} listing(s) to upsert`)
+    log.info(`Sanitized file has ${itemCount} listing(s) to upsert`)
     if (itemCount === 0) {
         throw new Error(`No items in sanitized file: ${pathForLog(SAN_PATH)}`)
     }
@@ -153,7 +143,7 @@ async function main(): Promise<void> {
         }
         tagMap = geminiTaggingIndexFromValidatedBody(bodyParsed)
         aiBatchAt = bodyParsed.meta.generatedAt
-        logInfo('Gemini tagging merged', {taggingIndexSize: tagMap.size, taggedFile: pathForLog(TAG_PATH)})
+        log.info('Gemini tagging merged', {taggingIndexSize: tagMap.size, taggedFile: pathForLog(TAG_PATH)})
     }
 
     const rows = buildPersistedRowsFromOtodomSanitizedAndTagging(parsed.items, tagMap, aiBatchAt)
@@ -161,15 +151,17 @@ async function main(): Promise<void> {
     try {
         const {rows: n} = await upsertPersistedListingRowsPrisma(prisma, rows)
         const total = await countListingsPrisma(prisma)
-        logInfo(`Upserted ${n} row(s) from file; total rows in listings table: ${total}`)
+        log.info(`Upserted ${n} row(s) from file; total rows in listings table: ${total}`)
     } finally {
         await prisma.$disconnect()
     }
 }
 
 try {
+    const t0 = performance.now()
     await main()
+    log.info(`ok · ${Math.round(performance.now() - t0)}ms`)
 } catch (e) {
-    logError('Script failed', e)
+    log.error('Script failed', e)
     process.exit(1)
 }

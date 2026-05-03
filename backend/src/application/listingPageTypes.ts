@@ -7,6 +7,8 @@ export type ListingSearchCriteria = {
   priceMin?: number
   priceMax?: number
   roomsMin?: number
+  /** Listing must contain every tag (AND). IDs from offline tagging vocabulary. */
+  tags?: string[]
 }
 
 export type ListListingsQuery = ListingSearchCriteria & {

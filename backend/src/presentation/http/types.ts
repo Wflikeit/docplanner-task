@@ -33,20 +33,20 @@ export type PaginatedListings = {
   pageSize: number
 }
 
-export type AiChatMessage = {
-  role: 'user' | 'assistant'
-  content: string
-}
-
-export type AiListingSearchRequest = {
-  messages: AiChatMessage[]
+/** Canonical listing query after merge (page 1 from AI path). */
+export type AiListingSearchMergedQueryWire = {
+  q?: string
+  city?: string
+  priceMin?: number
+  priceMax?: number
+  roomsMin?: number
+  tags?: string[]
+  page: number
+  limit: number
 }
 
 export type AiListingSearchResponse = {
   reply: string
-  q?: string | null
-  city?: string | null
-  priceMin?: number | null
-  priceMax?: number | null
-  roomsMin?: number | null
+  mergedQuery: AiListingSearchMergedQueryWire
+  listings: PaginatedListings
 }

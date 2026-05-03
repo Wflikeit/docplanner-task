@@ -7,6 +7,7 @@
  * OTODOM_SANITIZED_PATH=data/test-data.sanitized.json OTODOM_TAGGING_PREVIEW_OUT=data/test-data.tagging-inputs.preview.json npm run preview:otodom:tagging-inputs
  */
 import {readFileSync, mkdirSync, writeFileSync} from 'node:fs'
+import {performance} from 'node:perf_hooks'
 import {dirname, isAbsolute, join, relative} from 'node:path'
 import {fileURLToPath} from 'node:url'
 import process from 'node:process'
@@ -18,6 +19,7 @@ import {
     toLlmTaggingInput,
     type OtodomSanitizedListingItem,
 } from '../src/infrastructure/data-pipeline/otodom/index.js'
+import {createLogger} from '../src/infrastructure/logging/logger.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const BACKEND_ROOT = join(__dirname, '..')
@@ -51,22 +53,10 @@ const LIMIT: number | undefined =
               return n
           })()
 
-function ts(): string {
-    return new Date().toISOString()
-}
-
-function logInfo(message: string, extra?: unknown): void {
-    const line = `[preview:otodom:tagging] ${ts()} [INFO] ${message}`
-    if (extra !== undefined) console.log(line, extra)
-    else console.log(line)
-}
-
-function logError(message: string, err?: unknown): void {
-    console.error(`[preview:otodom:tagging] ${ts()} [ERROR] ${message}`, err)
-}
+const log = createLogger('preview:otodom:tagging', {timestamps: true})
 
 function main(): void {
-    logInfo('Start', {
+    log.info('Start', {
         IN_PATH: pathForLog(IN_PATH),
         OUT_PATH: pathForLog(OUT_PATH),
         LIMIT: LIMIT ?? 'all',
@@ -93,12 +83,14 @@ function main(): void {
     const outDoc = {source: 'otodom' as const, generatedFor: 'tagging_input_preview', items: rows}
     mkdirSync(dirname(OUT_PATH), {recursive: true})
     writeFileSync(OUT_PATH, `${JSON.stringify(outDoc, null, 2)}\n`, 'utf8')
-    logInfo(`Wrote ${pathForLog(OUT_PATH)} (${rows.length} rows)`)
+    log.info(`Wrote ${pathForLog(OUT_PATH)} (${rows.length} rows)`)
 }
 
 try {
+    const t0 = performance.now()
     main()
+    log.info(`ok · ${Math.round(performance.now() - t0)}ms`)
 } catch (e) {
-    logError('Script failed', e)
+    log.error('Script failed', e)
     process.exit(1)
 }

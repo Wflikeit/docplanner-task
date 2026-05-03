@@ -43,6 +43,41 @@ likely be separate services or jobs connected through a queue or webhooks.
 For the MVP, JSON files act as stable handoff points between stages,
 which keeps the system reproducible, debuggable and inexpensive to iterate on.
 
+## Example scenarios
+
+### Example A
+
+The user is looking for a house in Mazowieckie with at least 4 rooms.
+
+1. The user sets filters:
+    - region: Mazowieckie
+    - rooms: 4+
+
+2. The system returns matching listings from the database.
+
+3. The user opens a listing detail page to inspect price, description and photos.
+
+Result:
+The user quickly finds a relevant house using structured filters.
+
+### Example B (AI search)
+
+The user types:
+"I want a quiet house near forest, not too expensive, around Warsaw"
+
+1. The system sends the query to the AI search endpoint.
+2. The model maps the intent to:
+    - region/city: Warsaw area
+    - tags: quiet_area, near_forest
+    - priceMax: inferred low-to-mid range
+
+3. The backend merges these filters with the current state.
+
+4. The system returns matching listings.
+
+Result:
+The user gets relevant results without manually setting filters.
+
 ## Data sanitization and processing
 
 The raw snapshot is not imported directly into the database. Instead, it goes through a deterministic sanitization step that produces a compact, pipeline-ready JSON file:
@@ -115,19 +150,37 @@ This means:
 - LLM output can be regenerated later if prompts or models change,
 - AI tags can support natural-language or tag-based search without overwriting deterministic fields.
 
-## One key assumption
+**Conversational search (optional UI):** the `POST /api/listings/ai-search` endpoint calls Gemini with **`activeFilters`** plus the **full conversation** (clamped by `AI_SEARCH_MAX_CONVERSATION_CHARS`, default 8000). The model returns a JSON patch merged on the server, then listing SQL runs. **Without `GEMINI_API_KEY`** (or with `AI_SEARCH_MOCK=1`) the handler uses a **reply-only stub** — it does not infer filters; set the key for real behaviour.
 
-Otodom exposes enough structured data through JSON-LD and page attributes to build a useful deterministic importer for an MVP.
+## Key assumption
+
+**Core listing UX and AI enrichment**
+
+- I assume that core listing usability does not depend on AI enrichment.
+- I assume that features such as tagging or summaries can be computed asynchronously after ingestion, without affecting the user experience.
 
 ## One success metric
 
-A practical success metric is:
+**MVP (data-focused)**
 
-**Search-to-detail success rate** — the percentage of sessions where a user applies search or filters and opens at least one listing detail page within 60 seconds.
+- Primary metric: **data usability** — the share of listings that are complete, non-duplicated and lead to valid pages.
+
+**Beyond the MVP**
+
+- In a real product, add a user-facing metric such as **search-to-detail success rate** — whether people find and open relevant listings.
 
 ## One limitation / failure mode
 
-The crawler depends on the source website remaining accessible and reasonably stable. Listings may disappear between URL collection and detail-page crawling, and page structure may change over time. The sanitizer handles expired pages, but larger-scale reliability would require stronger source integration, retry logic and monitoring.
+**External data**
+
+- The MVP depends on data quality from a single external source.
+- Listings may disappear between URL collection and detail-page crawling.
+- Some offers may be incomplete, duplicated or misleading.
+
+**Sanitizer vs production scale**
+
+- The sanitizer handles obvious expired pages and missing values.
+- Broader reliability would need stronger source integration, periodic refreshes, better deduplication, retry logic and data quality monitoring.
 
 ## What we’d improve with more time
 
@@ -150,6 +203,7 @@ The crawler depends on the source website remaining accessible and reasonably st
   The ingestion pipeline (scraping + sanitization) should remain deterministic and independent, while enrichment runs after listings are stored. This avoids blocking ingestion on LLM latency and allows independent scaling.
 
 - Extend AI usage to natural-language search (mapping user intent to structured filters).
+- **Hybrid search intent (future):** pre-parse the user message with deterministic rules (e.g. regex) to extract obvious structured signals (budget, room count, city tokens) and send a **smaller payload** to the LLM for the ambiguous remainder (tags, nuance)—reducing tokens and cost while keeping Gemini for what heuristics miss.
 - Optionally use AI to enrich missing information when the description contains useful signals, while avoiding inference of core fields such as price or area.
 
 ### Observability & debugging

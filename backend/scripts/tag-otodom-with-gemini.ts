@@ -7,10 +7,11 @@
  * cd backend
  * npm run tag:otodom:gemini
  *
- * OTODOM_SANITIZED_PATH=data/test-data.sanitized.json OTODOM_TAGGING_OUT=data/test-data.tagged.json npm run tag:otodom:gemini
+ * Test fixtures: OTODOM_SANITIZED_PATH=data/test-data.sanitized.json OTODOM_TAGGING_OUT=data/test-data.tagged.json npm run tag:otodom:gemini
  * OTODOM_TAGGING_PROMPT_PATH=...  # optional override (relative to backend/ or absolute)
  */
 import {readFileSync, mkdirSync, writeFileSync} from 'node:fs'
+import {performance} from 'node:perf_hooks'
 import {dirname, isAbsolute, join, relative} from 'node:path'
 import {fileURLToPath} from 'node:url'
 import process from 'node:process'
@@ -29,6 +30,7 @@ import {
     type LlmTaggingInput,
     type OtodomSanitizedListingItem,
 } from '../src/infrastructure/data-pipeline/otodom/index.js'
+import {createLogger} from '../src/infrastructure/logging/logger.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const BACKEND_ROOT = join(__dirname, '..')
@@ -52,8 +54,8 @@ const PROMPT_PATH = resolveBackendPath(
         join(BACKEND_ROOT, 'src', 'infrastructure', 'ai', 'prompts', 'listing-tagging.prompt.md'),
 )
 
-const DEFAULT_IN = join(BACKEND_ROOT, 'data', 'test-data.sanitized.json')
-const DEFAULT_OUT = join(BACKEND_ROOT, 'data', 'test-data.tagged.json')
+const DEFAULT_IN = join(BACKEND_ROOT, 'data', 'processed', 'otodom-listings.sanitized.json')
+const DEFAULT_OUT = join(BACKEND_ROOT, 'data', 'processed', 'otodom-listings.tagged.json')
 
 const IN_PATH = resolveBackendPath(process.env.OTODOM_SANITIZED_PATH ?? DEFAULT_IN)
 const OUT_PATH = resolveBackendPath(process.env.OTODOM_TAGGING_OUT ?? DEFAULT_OUT)
@@ -76,19 +78,7 @@ const DELAY_MS: number = (() => {
     return Number.isFinite(n) && n >= 0 ? n : 400
 })()
 
-function ts(): string {
-    return new Date().toISOString()
-}
-
-function logInfo(message: string, extra?: unknown): void {
-    const line = `[tag:otodom:gemini] ${ts()} [INFO] ${message}`
-    if (extra !== undefined) console.log(line, extra)
-    else console.log(line)
-}
-
-function logError(message: string, err?: unknown): void {
-    console.error(`[tag:otodom:gemini] ${ts()} [ERROR] ${message}`, err)
-}
+const log = createLogger('tag:otodom:gemini', {timestamps: true})
 
 function sleep(ms: number): Promise<void> {
     return new Promise((r) => setTimeout(r, ms))
@@ -113,7 +103,7 @@ async function main(): Promise<void> {
         throw new Error('Missing GEMINI_API_KEY (set in .env or the environment).')
     }
 
-    logInfo('Start', {
+    log.info('Start', {
         IN_PATH: pathForLog(IN_PATH),
         OUT_PATH: pathForLog(OUT_PATH),
         MODEL,
@@ -189,12 +179,14 @@ async function main(): Promise<void> {
 
     mkdirSync(dirname(OUT_PATH), {recursive: true})
     writeFileSync(OUT_PATH, `${JSON.stringify(outDoc, null, 2)}\n`, 'utf8')
-    logInfo(`Wrote ${pathForLog(OUT_PATH)} (${rows.length} rows)`)
+    log.info(`Wrote ${pathForLog(OUT_PATH)} (${rows.length} rows)`)
 }
 
 try {
+    const t0 = performance.now()
     await main()
+    log.info(`ok · ${Math.round(performance.now() - t0)}ms`)
 } catch (e) {
-    logError('Script failed', e)
+    log.error('Script failed', e)
     process.exit(1)
 }

@@ -3,7 +3,7 @@
   "meta": {
     "outputKind": "otodom_tagging_gemini_v1",
     "model": "gemini-2.5-flash",
-    "generatedAt": "2026-05-02T01:40:46.855Z",
+    "generatedAt": "2026-05-03T10:28:16.500Z",
     "inputPath": "data/processed/otodom-listings.sanitized.json"
   },
   "items": [
@@ -49,13 +49,12 @@
           "fenced_area",
           "near_transport",
           "good_commute",
-          "quiet_area",
           "city_center",
           "family_friendly"
         ],
-        "summary": "Segment od dewelopera o pow. 123m2 (5 pokoi) w centrum Grodziska Mazowieckiego. Do wykończenia, z garażem, parkingiem i ogrodem. Blisko WKD/PKP, szkoły i przedszkola. Teren ogrodzony, idealny dla rodziny. Planowane zakończenie budowy: koniec 2026.",
+        "summary": "Segment o powierzchni 123m² z pięcioma pokojami, garażem i miejscem parkingowym w Grodzisku Mazowieckim. Oferta deweloperska (ukończenie Q4 2026), wymagająca wykończenia. Położony w centrum z doskonałym dostępem do infrastruktury miejskiej, szkół, przedszkoli oraz komunikacji WKD i PKP. Idealny dla rodziny.",
         "warnings": [
-          "Attribute 'Typ ogłoszeniodawcy: prywatny' contradicts description 'Oferta bezpośrednio od dewelopera' and 'Rynek: pierwotny'. Prioritized developer offer."
+          "Attribute 'Typ ogłoszeniodawcy' states 'prywatny', but description clearly indicates 'Oferta bezpośrednio od dewelopera' with details like 'Kupujący nie płaci podatku PCC' and 'Rachunek deweloperski'. Prioritizing description for 'developer_offer' and 'new_build' tags."
         ]
       }
     },
@@ -91,21 +90,19 @@
           "mid_range",
           "medium",
           "new_build",
-          "developer_offer",
           "private_offer",
           "needs_finishing",
           "modern",
           "garage",
-          "parking",
           "garden",
           "fenced_area",
           "good_commute",
           "quiet_area",
-          "near_forest",
           "suburban",
+          "near_forest",
           "family_friendly"
         ],
-        "summary": "Segment w Nadmie pod Markami (128m2) w stanie deweloperskim, z garażem i działką. Wysoki standard (pompa ciepła, rekuperacja, klimatyzacja). Blisko S8 i szkoły, w cichej, zielonej okolicy. Teren ogrodzony. Idealny dla rodziny."
+        "summary": "Nowy segment w Nadmie pod Markami, 128.13m² z działką 200m², cena 799 000 PLN. Posiada garaż, pompę ciepła, rekuperację, sprzedawany w stanie deweloperskim. Położony w cichej, ogrodzonej, podmiejskiej okolicy blisko lasu, z dobrym dojazdem do Warszawy, idealny dla rodzin."
       }
     },
     {
@@ -138,6 +135,7 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "large",
           "new_build",
           "developer_offer",
@@ -145,12 +143,12 @@
           "parking",
           "garden",
           "fenced_area",
-          "suburban",
           "near_forest",
           "family_friendly",
-          "modern"
+          "modern",
+          "suburban"
         ],
-        "summary": "Nowoczesny, przestronny dom szeregowy (216 m², 6 pokoi) od dewelopera w Józefosławiu k. Warszawy. Oferuje garaż, miejsca parkingowe, 398 m² działki w ogrodzonej inwestycji. Położony jest pod miastem, blisko lasu, w rodzinnej okolicy z pełną infrastrukturą."
+        "summary": "Nowoczesny dom szeregowy w inwestycji deweloperskiej \"Rezydencje Ogrodowa\" w Józefosławiu. Posiada 6 pokoi, 216 m² powierzchni, garaż, dodatkowe miejsca parkingowe i ogrodzoną działkę. W okolicy las, pełna infrastruktura społeczna i placówki edukacyjne. Planowane zakończenie budowy w 2025 roku."
       }
     },
     {
@@ -185,19 +183,20 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
           "new_build",
           "developer_offer",
+          "needs_finishing",
+          "modern",
           "parking",
           "garden",
+          "fenced_area",
           "near_transport",
           "good_commute",
-          "family_friendly",
-          "modern",
-          "needs_finishing",
-          "fenced_area"
+          "family_friendly"
         ],
-        "summary": "5-pokojowy dom o powierzchni 102m² w zabudowie bliźniaczej na nowym, zamkniętym osiedlu Pustynna 51 w Łodzi. Oferta dewelopera, stan do wykończenia. Posiada ogródek, dwa miejsca parkingowe i dobrą komunikację z centrum."
+        "summary": "5-pokojowy dom w zabudowie bliźniaczej w Łodzi, od dewelopera, na zamkniętym osiedlu Pustynna 51. Powierzchnia 102m², z ogrodem, miejscami parkingowymi i nowoczesną architekturą. Stan deweloperski do wykończenia. Dobra komunikacja i bliskość terenów zielonych."
       }
     },
     {
@@ -230,17 +229,17 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "medium",
           "new_build",
           "developer_offer",
-          "needs_finishing",
           "modern",
           "garden",
           "fenced_area",
           "suburban",
           "family_friendly"
         ],
-        "summary": "Nowy dom szeregowy (96.72m2, 4 pokoje) w Wiązanej (Warszawa), idealny dla rodziny. Oferta dewelopera na rynku pierwotnym, z ogrodem, na ogrodzonym terenie. Nowoczesny projekt, w stanie deweloperskim do wykończenia. Zakończenie budowy w tym roku."
+        "summary": "Komfortowy dom szeregowy w Warszawie (Wiązana), z 4 pokojami i ogródkiem, idealny dla rodziny. Oferta deweloperska z rynku pierwotnego, budowa zakończy się w tym roku. Posiada nowoczesny standard wykończenia i znajduje się na terenie zamkniętym."
       }
     },
     {
@@ -274,20 +273,20 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
           "new_build",
           "developer_offer",
-          "needs_finishing",
           "garage",
           "parking",
           "garden",
           "fenced_area",
-          "good_commute",
           "quiet_area",
           "suburban",
-          "family_friendly"
+          "family_friendly",
+          "modern"
         ],
-        "summary": "Ostatni dom 4-pokojowy w Lesznowoli-Pole (rynek pierwotny, oferta dewelopera), z ogrodem i miejscem parkingowym na zamkniętym osiedlu. W standardzie deweloperskim do wykończenia. Idealny dla rodzin, blisko szkoły i przedszkola, cicha okolica z dobrą komunikacją."
+        "summary": "Ostatni dom w Lesznowoli z ogrodem, 4 pokoje, o powierzchni 102.4 m² w cenie 890 000 PLN. Nowoczesny budynek z pompą ciepła i rekuperacją, idealny dla rodzin, na zamkniętym osiedlu w cichej, podmiejskiej okolicy, blisko pełnej infrastruktury."
       }
     },
     {
@@ -320,7 +319,9 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "medium",
+          "new_build",
           "developer_offer",
           "modern",
           "garage",
@@ -331,12 +332,12 @@
           "good_commute",
           "quiet_area",
           "near_forest",
-          "family_friendly",
-          "suburban"
+          "suburban",
+          "family_friendly"
         ],
-        "summary": "Nowoczesny dom na kameralnym osiedlu w Płochocinie, otoczony naturą. 5 pokoi, 143,57 m², z garażem, parkingiem i ogrodem. Blisko PKP, autobusu, autostrady A2 i Kampinoskiego Parku Narodowego. Idealny dla rodziny.",
+        "summary": "Nowoczesny bliźniak premium z ogrodem (450 m²) i garażem, blisko PKP, autostrady A2 i Kampinoskiego Parku Narodowego, idealny dla rodzin. Oferta deweloperska z terminem budowy na 2025 rok, 25 minut od centrum Warszawy.",
         "warnings": [
-          "Contradiction: 'Rynek: wtórny' (secondary market) stated, but 'Rok budowy: 2025' strongly suggests a new build."
+          "The 'Rynek' attribute states 'wtórny' (secondary market), which contradicts 'Rok budowy: 2025' (2025 build year, implying new build) and the listing's description of 'kameralne osiedle otoczone naturą' and 'Nowoczesne rozwiązania technologiczne'. We've prioritized 'new_build' due to the future build year and modern description."
         ]
       }
     },
@@ -369,16 +370,17 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "small",
           "new_build",
           "private_offer",
+          "needs_finishing",
           "parking",
           "garden",
           "suburban",
-          "family_friendly",
-          "needs_finishing"
+          "family_friendly"
         ],
-        "summary": "Na sprzedaż nowy dom bliźniaczy (75m2, 4 pokoje) w Kobylnicy. Posiada 600m2 działkę, miejsca postojowe i stan deweloperski do wykończenia. Idealny dla rodziny."
+        "summary": "Dostępny dom bliźniaczy w Kobylnicy, 75m2, 4 pokoje, na działce 600m2. Oferta pierwotna, do wykończenia, z dwoma miejscami postojowymi i tarasem. Idealny dla rodziny."
       }
     },
     {
@@ -413,7 +415,9 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
+          "resale",
           "private_offer",
           "garage",
           "garden",
@@ -425,7 +429,7 @@
           "good_commute",
           "suburban"
         ],
-        "summary": "Nowoczesny dom szeregowy (103 m², 5 pokoi) z ogrodem i garażem, położony pod Oławą (blisko Wrocławia). W pełni wykończony i odnowiony (2023-2024), gotowy do zamieszkania. Idealny dla rodziny, z dobrą komunikacją (PKP, autobus), cichą okolicą i bliskością lasu."
+        "summary": "Nowoczesny dom szeregowy 103m² w Stanowicach (koło Oławy), w pełni wykończony i gotowy do zamieszkania. Posiada 5 pokoi, garaż, ogród, pompę ciepła i fotowoltaikę. Zlokalizowany w spokojnej, podmiejskiej okolicy z dobrym dojazdem, blisko transportu i terenów zielonych, idealny dla rodziny."
       }
     },
     {
@@ -461,18 +465,20 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "large",
+          "resale",
+          "modern",
           "garage",
           "parking",
           "garden",
+          "suburban",
+          "good_commute",
           "quiet_area",
           "near_forest",
-          "family_friendly",
-          "modern",
-          "good_commute",
-          "suburban"
+          "family_friendly"
         ],
-        "summary": "Nowoczesny, przestronny dom wolnostojący (206 m², 5 pokoi) z ogrodem (857 m²) i garażem, zbudowany w 2018 r. Położony w cichej okolicy Grodziszczka, blisko lasu, z doskonałym dojazdem do Poznania. Idealny dla rodziny."
+        "summary": "Duży dom (206 m², 5 pokoi) z 2018 r. w Grodziszczku (gm. Szamotuły), na rynku wtórnym. Nowoczesny, z ogrodem, garażem i parkingiem. Idealny dla rodziny, położony pod miastem w cichej i zielonej okolicy blisko lasu, z dobrym dojazdem do Poznania. Cena: 1 250 000 PLN."
       }
     },
     {
@@ -508,13 +514,13 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "small",
           "new_build",
           "developer_offer",
           "garage",
           "parking",
           "garden",
-          "fenced_area",
           "near_transport",
           "quiet_area",
           "near_forest",
@@ -524,7 +530,7 @@
           "good_commute",
           "suburban"
         ],
-        "summary": "Segment deweloperski o pow. 86 m2 (4 pokoje) w Nowej Woli, 1 km od kolejki. Nowoczesne osiedle pod Warszawą, cicha okolica blisko lasu, z ogródkiem 73 m2. Stan deweloperski, z możliwością dokupienia miejsca postojowego w garażu/na zewnątrz."
+        "summary": "Nowoczesny segment deweloperski (86 m2, 4 pokoje) w spokojnej, zielonej okolicy pod Warszawą. Stan deweloperski, z ogrodem, miejscem postojowym, blisko kolejki. Doskonały dojazd, idealny dla rodziny."
       }
     },
     {
@@ -560,21 +566,24 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
           "new_build",
-          "private_offer",
+          "needs_finishing",
+          "modern",
           "garage",
           "parking",
           "garden",
+          "good_commute",
           "quiet_area",
           "near_forest",
-          "family_friendly",
-          "modern",
-          "needs_finishing",
-          "good_commute",
-          "suburban"
+          "suburban",
+          "family_friendly"
         ],
-        "summary": "Nowoczesny szeregowiec w Bilczy, \"Apartamenty pod lasem\". Gotowe, 120m², 4 pokoje, stan deweloperski. Garaż, parking, ogród. Cicha, zielona okolica z dobrym dojazdem do Kielc, blisko lasu. Oferta prywatna."
+        "summary": "Nowoczesne apartamenty w zabudowie szeregowej, w stanie deweloperskim, w spokojnej Bilczy pod Kielcami, z dobrym dojazdem, blisko lasu. Posiadają 4 pokoje, garaż, miejsce parkingowe i ogród.",
+        "warnings": [
+          "Attribute 'Typ ogłoszeniodawcy: prywatny' contradicts 'Rynek: pierwotny', leading to ambiguity for 'developer_offer' / 'private_offer' tags, which were consequently omitted."
+        ]
       }
     },
     {
@@ -603,14 +612,17 @@
       },
       "gemini": {
         "tags": [
+          "budget",
           "small",
+          "new_build",
           "needs_finishing",
           "garden",
-          "near_forest"
+          "near_forest",
+          "suburban"
         ],
-        "summary": "Atrakcyjny dom 70 m² w Beskidach (Pewel Wielka), w stanie do wykończenia, na działce 400 m². Idealna baza wypadowa w Beskid Żywiecki, blisko szlaków pieszych i atrakcji turystycznych. Posiada 3 pokoje.",
+        "summary": "Atrakcyjny dom 70 m² w Beskidach, w stanie do wykończenia, z planowanym rokiem budowy 2026. Położony w malowniczej Pewli Wielkiej, w gminie Jeleśnia, blisko szlaków turystycznych. Nieruchomość z działką 400 m², idealna jako baza wypadowa. Cena do negocjacji.",
         "warnings": [
-          "Inconsistent data: 'Rok budowy' (2026) implies future build, but 'Rynek' is specified as 'wtórny' (secondary market)."
+          "The 'Rynek: wtórny' (secondary market) attribute contradicts 'Rok budowy: 2026' (build year 2026) and 'Stan wykończenia: do wykończenia' (needs finishing), which strongly suggest a new build or primary market offer. The 'new_build' tag was chosen based on the future build year and unfinished state."
         ]
       }
     },
@@ -648,16 +660,17 @@
         "tags": [
           "premium",
           "very_large",
+          "resale",
           "modern",
           "garage",
           "parking",
           "garden",
           "near_transport",
           "near_forest",
-          "family_friendly",
-          "suburban"
+          "suburban",
+          "family_friendly"
         ],
-        "summary": "Dwa przestronne domy (341m2 i 176m2) na dużej działce (2341m2) w warszawskim Wawrze. Po gruntownym remoncie w 2014, z garażem, ogrodem i miejscami parkingowymi. Blisko lasu i komunikacji miejskiej, idealne dla rodziny."
+        "summary": "Warszawa Wawer: Dwa domy (501m2, 8 pokoi) na działce 2341m2. Jeden mieszkalny (341m2) z udogodnieniami dla niepełnosprawnych, drugi użytkowy (176m2). Po remoncie, garaż, parking, ogród. Blisko transport i las. Premium, rynek wtórny, rodzinny."
       }
     },
     {
@@ -693,21 +706,18 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "very_large",
-          "needs_finishing",
+          "resale",
           "needs_renovation",
           "garage",
           "parking",
           "garden",
           "fenced_area",
-          "quiet_area",
           "near_forest",
           "family_friendly"
         ],
-        "summary": "Duża willa (390m², 4 pokoje) w Istebnej, Beskidy, z widokiem na Złoty Groń. Posiada garaż i dużą działkę (1140m²). Wymaga remontu, ale oferuje ogromny potencjał jako dom rodzinny lub biznes (wynajem). Cicha okolica blisko lasu i atrakcji górskich.",
-        "warnings": [
-          "Attribute 'Położenie: miasto' seems inconsistent with description of Istebna as a mountain village, but did not influence tag decisions for location."
-        ]
+        "summary": "Dom w górach w Istebnej z widokiem na Złoty Groń, idealny dla rodziny lub pod biznes. Powierzchnia 390 m², działka 1140 m². Wymaga remontu, ale posiada duży potencjał. Cena 1 190 000 PLN. Oferta z rynku wtórnego, obejmuje garaż, parking i ogrodzony teren. Blisko lasu i górskich atrakcji."
       }
     },
     {
@@ -741,7 +751,9 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "large",
+          "resale",
           "private_offer",
           "needs_renovation",
           "garage",
@@ -754,7 +766,7 @@
           "near_transport",
           "family_friendly"
         ],
-        "summary": "Duży dom wolnostojący (200m², 8 pokoi) w cichej wsi Borowa, wymaga remontu. Oferta prywatna. Posiada garaż, miejsce parkingowe i ogrodzoną działkę (1000m²). W okolicy las, szkoły i komunikacja publiczna (autobus, kolej). Idealny dla rodziny."
+        "summary": "Dom wolnostojący o powierzchni 200 m² z 8 pokojami w spokojnej wsi (Borowa). Oferta prywatna z rynku wtórnego. Posiada garaż, dużą działkę 1000 m² z ogrodem i jest ogrodzony. Wymaga remontu. W okolicy las, szkoły, przystanek autobusowy i stacja kolejowa."
       }
     },
     {
@@ -790,16 +802,18 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
+          "resale",
           "private_offer",
           "garden",
-          "quiet_area",
           "near_forest",
+          "quiet_area",
           "family_friendly",
           "modern",
           "suburban"
         ],
-        "summary": "Uroczy, całoroczny dom wolnostojący w cichej wsi Wodnica pod Ustką (110m2, działka 700m2). Nowoczesny, z 4 pokojami, pompą ciepła, rekuperacją i ogrzewaniem podłogowym. Blisko morza i Rezerwatu Buczyna nad Słupią. Oferta prywatna."
+        "summary": "Dom wolnostojący 110m2 (2017-2018) w cichej Wodnicy pod Ustką, blisko morza i lasu. Oferta prywatna, rynek wtórny. Nowoczesny standard, 4 pokoje, ogród na działce 700m2. Idealny dla rodziny, cena 900 tys. PLN."
       }
     },
     {
@@ -834,16 +848,20 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "very_large",
+          "resale",
+          "developer_offer",
           "private_offer",
           "garage",
           "parking",
           "garden",
           "fenced_area",
           "city_center",
+          "modern",
           "family_friendly"
         ],
-        "summary": "Dom z potencjałem inwestycyjnym w centrum Bełchatowa, oferowany prywatnie. Duża działka 880 m², 9 pokoi, 228 m² powierzchni, garaż i 4 miejsca parkingowe. Monitoring i teren zamknięty."
+        "summary": "Przestronny dom o powierzchni 228 m² w centrum Bełchatowa, oferujący 9 pokoi i działkę 880 m². Wyposażony w smart home, monitoring, parking i garaż. Oferta prywatna idealna pod inwestycję (możliwość wynajmu) lub dla dużej rodziny. Rynek wtórny, stan do zamieszkania."
       }
     },
     {
@@ -886,13 +904,13 @@
           "garden",
           "fenced_area",
           "near_transport",
-          "good_commute",
-          "quiet_area",
           "near_forest",
+          "quiet_area",
+          "good_commute",
           "suburban",
           "family_friendly"
         ],
-        "summary": "Nowoczesny dom deweloperski na kameralnym, ogrodzonym osiedlu w Warszawie (Białołęka). Do wykończenia, z pompą ciepła i rekuperacją. Posiada ogród, garaż/miejsce parkingowe. Blisko komunikacji, lasu, szkół i przedszkoli, z dobrym dojazdem do centrum."
+        "summary": "Kameralne osiedle 12 nowoczesnych domów w Białołęce, blisko lasu i komunikacji miejskiej, z własnym ogrodem i garażem. Wysoki standard wykonania, ale do wykończenia. Idealne dla rodziny ceniącej spokój i dobry dojazd do centrum Warszawy."
       }
     },
     {
@@ -929,6 +947,7 @@
         "tags": [
           "premium",
           "very_large",
+          "resale",
           "modern",
           "garage",
           "parking",
@@ -936,11 +955,10 @@
           "fenced_area",
           "good_commute",
           "quiet_area",
-          "near_forest",
           "suburban",
           "family_friendly"
         ],
-        "summary": "Luksusowy dom wolnostojący w Lednogórze koło Gniezna (245m2, 4 pokoje) z basenem, sauną i klimatyzacją. Nowoczesny, o wysokim standardzie, z ogrodem i garażem. Cicha i zielona okolica, z dobrym dojazdem do S5."
+        "summary": "Luksusowy dom wolnostojący w Lednogórze z basenem i sauną, o wysokim standardzie wykończenia. Zapewnia szybki dojazd do Gniezna i Poznania (S5). Posiada 4 pokoje, garaż dwustanowiskowy, duży ogród, systemy klimatyzacji i alarmowy. Położony w spokojnej, podmiejskiej okolicy."
       }
     },
     {
@@ -976,15 +994,19 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "large",
+          "resale",
           "private_offer",
+          "modern",
           "garage",
           "parking",
           "garden",
           "near_transport",
+          "quiet_area",
           "near_forest"
         ],
-        "summary": "Przestronny dom (180 m²) z lat 30. w Szczecinie, w prestiżowej dzielnicy Głębokie, po remoncie 4 lata temu, gotowy do zamieszkania. Posiada ogród 850 m², garaż i parking. Zlokalizowany blisko pętli komunikacyjnej, jeziora i Puszczy Wkrzańskiej. Oferta prywatna."
+        "summary": "Dom dwurodzinny 180m2 w prestiżowej dzielnicy Szczecina, Głębokie. Położony blisko Jeziora i Puszczy Wkrzańskiej, oferuje ogród 850m2 i garaż. Po remoncie, z dobrym dostępem do komunikacji miejskiej. Oferta prywatna, cena premium."
       }
     },
     {
@@ -1018,7 +1040,9 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "very_large",
+          "resale",
           "modern",
           "garage",
           "parking",
@@ -1030,10 +1054,7 @@
           "good_commute",
           "family_friendly"
         ],
-        "summary": "Nowoczesny dom wolnostojący o pow. 276 m² (5 pokoi) na dużej, ogrodzonej działce (1500 m²). Wykończony w wysokim standardzie, gotowy do zamieszkania. Położony w spokojnej, podmiejskiej okolicy Racławic Wielkich, blisko Wrocławia, z dobrym dojazdem i komunikacją.",
-        "warnings": [
-          "Property built in 2023 but listed on the secondary market ('Rynek: wtórny'), so 'new_build' tag is not applied based on rules."
-        ]
+        "summary": "Nowoczesny dom wolnostojący o powierzchni 276 m² na dużej, ogrodzonej działce 1500 m², wykończony w wysokim standardzie. Posiada garaż, pompę ciepła, rekuperację i klimatyzację. Położony pod Wrocławiem, w spokojnej okolicy z dobrym dojazdem do centrum i bliskością szkoły."
       }
     },
     {
@@ -1063,18 +1084,13 @@
       },
       "gemini": {
         "tags": [
-          "premium",
+          "budget",
           "small",
           "new_build",
-          "developer_offer",
+          "private_offer",
           "modern"
         ],
-        "summary": "Luksusowy, nowy domek glampingowy VESSEL E7 o powierzchni 38 m², z tarasem. Wyposażony w najwyższej konfiguracji: kino domowe, inteligentny dom, ogrzewanie podłogowe i klimatyzację. Kapsuła mobilna z 2025 roku, nigdy niezamieszkana, z rynku pierwotnego.",
-        "warnings": [
-          "Conflict: 'Typ ogłoszeniodawcy: prywatny' but description mentions a 'manager' and company website (terrabox.sk), suggesting a developer offer.",
-          "'Powierzchnia działki' of 38m² likely refers to the mobile capsule's footprint, not a traditional plot/garden.",
-          "Specific location tags omitted as it's a transportable mobile home."
-        ]
+        "summary": "Luksusowa, nowa kapsuła glampingowa VESSEL E7 o powierzchni 38m² z tarasem, w pełni wyposażona w inteligentne funkcje. Oferta prywatna, mobilna, wystawowa, z możliwością transportu w całej UE."
       }
     },
     {
@@ -1113,20 +1129,18 @@
           "premium",
           "medium",
           "new_build",
+          "developer_offer",
+          "needs_finishing",
           "garage",
           "parking",
           "garden",
+          "fenced_area",
           "near_transport",
-          "quiet_area",
-          "near_forest",
-          "family_friendly",
-          "modern",
-          "needs_finishing",
           "good_commute",
-          "suburban",
-          "fenced_area"
+          "near_forest",
+          "family_friendly"
         ],
-        "summary": "Nowy segment na warszawskiej Białołęce (rynek pierwotny), o powierzchni 115 m² z 3 pokojami, do wykończenia. Posiada ogródek, dwa miejsca postojowe (w tym garaż), jest częścią nowoczesnego, zamkniętego osiedla. Oferuje dobrą komunikację, bliskość terenów zielonych (lasu) i pełną infrastrukturę dla rodzin."
+        "summary": "Nowe segmenty na warszawskiej Białołęce, oddane do użytku, bez prowizji i PCC. Posiadają prywatny ogródek, dwa miejsca parkingowe oraz teren zamknięty. Stan deweloperski do wykończenia. W okolicy willowej, z dobrym dojazdem do centrum, blisko terenów zielonych i pełnej infrastruktury."
       }
     },
     {
@@ -1159,22 +1173,22 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "small",
           "new_build",
           "developer_offer",
-          "needs_finishing",
-          "modern",
           "parking",
           "garden",
           "fenced_area",
           "near_transport",
-          "good_commute",
           "quiet_area",
           "near_forest",
-          "suburban",
-          "family_friendly"
+          "family_friendly",
+          "needs_finishing",
+          "good_commute",
+          "suburban"
         ],
-        "summary": "3-pokojowy dom 62m2 w inwestycji deweloperskiej Osiedle Stokrotki w Boryszewie, pod Warszawą. Nowy budynek w stanie do wykończenia, z ogrodem i parkingiem, na terenie zamkniętym. Cicha, rodzinna okolica blisko lasu i komunikacji, z dobrym dojazdem do stolicy."
+        "summary": "3-pokojowy dom o powierzchni 62m² z ogródkiem na Osiedlu Stokrotki w Boryszewie, oferowany przez dewelopera Novisa. Inwestycja poza zgiełkiem miasta, blisko natury, z dobrym dojazdem do Warszawy i lokalnymi udogodnieniami, idealna dla rodzin. Stan deweloperski do wykończenia, z parkingiem i terenem zamkniętym."
       }
     },
     {
@@ -1210,20 +1224,21 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "medium",
-          "new_build",
+          "resale",
+          "needs_finishing",
           "parking",
           "garden",
+          "suburban",
           "quiet_area",
           "near_forest",
           "family_friendly",
-          "modern",
-          "needs_finishing",
-          "suburban"
+          "modern"
         ],
-        "summary": "Segment o powierzchni 113.89 m² w Warszawie (Białołęka), z 4 pokojami, na nowym osiedlu, do własnej aranżacji. Posiada nowoczesną architekturę, duży ogród i 2 miejsca postojowe. Jest dostępny od zaraz, położony w spokojnej, rodzinnej okolicy blisko lasu.",
+        "summary": "Komfortowy segment na warszawskiej Białołęce, 114 m², 4 pokoje, dostępny od zaraz. Na nowym, spokojnym osiedlu, z dużym ogrodem i miejscami parkingowymi. Idealny dla rodziny. Stan deweloperski, do własnej aranżacji. Oferta premium z rynku wtórnego.",
         "warnings": [
-          "Atrybut 'Rynek: wtórny' jest sprzeczny z 'Rok budowy: 2025' i opisem 'nowe osiedle'."
+          "The listing attributes contain a contradiction: 'Rynek: wtórny' (secondary market) is inconsistent with 'Rok budowy: 2025' (year of build 2025). 'resale' tag chosen based on 'Rynek' attribute as per rules."
         ]
       }
     },
@@ -1259,20 +1274,20 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "very_large",
+          "resale",
+          "developer_offer",
           "modern",
           "garage",
           "parking",
           "garden",
           "fenced_area",
-          "near_forest",
           "suburban",
+          "near_forest",
           "family_friendly"
         ],
-        "summary": "Wyjątkowy, energooszczędny dom (462 m², 10 pokoi) w Suchym Lesie pod Poznaniem. Posiadłość premium oferuje nowoczesne wnętrza, garaż na dwa auta, 5 miejsc parkingowych, ogród, ogrodzony teren oraz bliskość lasu. Idealny dla rodziny lub na biznes.",
-        "warnings": [
-          "The plot area of 909,000 m² appears to be a typo and might be significantly smaller, e.g., 909 m² or 9090 m²."
-        ]
+        "summary": "Przestronny dom o powierzchni 462 m² w prestiżowej części Suchego Lasu pod Poznaniem. Posiadłość oferuje 10 pokoi, dwustanowiskowy garaż, dodatkowe miejsca parkingowe, zagospodarowany ogród i potencjał biznesowy, idealna dla dużej rodziny."
       }
     },
     {
@@ -1307,7 +1322,9 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "medium",
+          "resale",
           "private_offer",
           "garage",
           "parking",
@@ -1315,9 +1332,10 @@
           "fenced_area",
           "quiet_area",
           "city_center",
-          "family_friendly"
+          "family_friendly",
+          "modern"
         ],
-        "summary": "Nietuzinkowy dom wolnostojący o pow. 130 m² z 5 pokojami, zlokalizowany w sercu Płocka, w zacisznej, prestiżowej dzielnicy. Posiada duży garaż, ogród oraz jest na ogrodzonym terenie. Idealny dla rodziny."
+        "summary": "Wyjątkowy dom wolnostojący (125m², 5 pokoi) w prestiżowej, spokojnej części Płocka, blisko centrum. Posiada garaż na dwa auta, duży ogród i teren zamknięty. Rynek wtórny, oferta prywatna, cena premium. Idealny dla rodziny."
       }
     },
     {
@@ -1349,6 +1367,7 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "large",
           "new_build",
           "private_offer",
@@ -1361,7 +1380,7 @@
           "suburban",
           "family_friendly"
         ],
-        "summary": "Nowy dom bliźniak (157m2, 5 pokoi) na działce 600m2 z garażem, oferowany prywatnie na rynku pierwotnym. Posiada nowoczesny standard i dobry dojazd do Warszawy (blisko PKP). Otoczenie przyjazne rodzinom, ze szkołami i placami zabaw."
+        "summary": "Nowy dom bliźniak z 5 pokojami i garażem, położony w okolicach Góry Kalwarii, 25 km od Warszawy. Oferta prywatna, standard wykończenia przewyższa deweloperski. Bliskość PKP i dobry dojazd do Warszawy. Idealny dla rodziny, z ogrodem i parkingiem."
       }
     },
     {
@@ -1393,6 +1412,7 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "medium",
           "new_build",
           "developer_offer",
@@ -1407,7 +1427,7 @@
           "suburban",
           "fenced_area"
         ],
-        "summary": "Nowoczesny dom 4-pokojowy (101 m²) na nowym osiedlu deweloperskim w warszawskim Wawrze. Stan do wykończenia, z prywatnym ogrodem i ogrodzonym terenem. Cicha, zielona okolica blisko Mazowieckiego Parku Krajobrazowego, z dobrym dojazdem do centrum i komunikacją miejską. Idealny dla rodziny."
+        "summary": "Dom 4-pokojowy w zabudowie bliźniaczej na nowoczesnym osiedlu Wawer Park w Warszawie, oferowany przez dewelopera. Z ogrodem, terenem zamkniętym i w stanie do wykończenia. Doskonały dojazd do centrum, blisko transportu publicznego i Mazowieckiego Parku Krajobrazowego. Idealny dla rodziny."
       }
     },
     {
@@ -1436,19 +1456,20 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
           "new_build",
           "developer_offer",
+          "needs_finishing",
           "garage",
           "parking",
           "garden",
-          "quiet_area",
-          "family_friendly",
-          "needs_finishing",
           "good_commute",
-          "suburban"
+          "quiet_area",
+          "suburban",
+          "family_friendly"
         ],
-        "summary": "Nowa inwestycja w Suszcu: bliźniak 119 m² (6 pokoi) w stanie deweloperskim, z ogrodem, garażem i parkingiem. Idealny dla rodziny, cicha okolica z dobrym dojazdem, blisko szkół. Oferta dewelopera."
+        "summary": "Nowa inwestycja bliźniaków w Suszcu, o średnim metrażu (119 m2) z 6 pokojami, w stanie deweloperskim. Oferuje ogród, garaż i parking. Znajduje się w cichej, podmiejskiej okolicy, idealnej dla rodzin, z dobrym dojazdem do większych miast."
       }
     },
     {
@@ -1484,15 +1505,18 @@
         "tags": [
           "premium",
           "very_large",
-          "modern",
+          "resale",
+          "developer_offer",
+          "garage",
           "parking",
           "garden",
           "quiet_area",
           "near_forest",
-          "suburban",
-          "family_friendly"
+          "family_friendly",
+          "modern",
+          "suburban"
         ],
-        "summary": "Dochodowy kompleks 6 domów całorocznych w Brennej, w Beskidzie Śląskim, bezpośrednio nad rzeką. Obiekt o wysokim standardzie, idealny dla rodzin i grup, oferuje liczne udogodnienia: parking, ogród, plac zabaw, jacuzzi i SPA. Położony w cichej, naturalnej okolicy."
+        "summary": "Kompleks 6 całorocznych domów na wynajem w Brennej, w Beskidzie Śląskim. Oferuje wysoki standard, liczne udogodnienia premium (jacuzzi, sauna, plac zabaw) i prywatne strefy relaksu. Zlokalizowany w cichej, górskiej okolicy, idealny dla rodzin."
       }
     },
     {
@@ -1527,8 +1551,9 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "very_large",
-          "modern",
+          "resale",
           "garage",
           "parking",
           "garden",
@@ -1536,9 +1561,10 @@
           "good_commute",
           "quiet_area",
           "suburban",
-          "family_friendly"
+          "family_friendly",
+          "modern"
         ],
-        "summary": "Luksusowy, nowoczesny dom w Lednogórze (245m², 4 pokoje) z ogrodem, garażem i basenem. Położony w spokojnej okolicy z dobrym dojazdem do Gniezna i Poznania (S5). Wysoki standard, gotowy do zamieszkania, idealny dla rodziny."
+        "summary": "Luksusowy dom wolnostojący w Lednogórze (245m², 4 pokoje) o wysokim standardzie. Oferuje garaż, parking, basen, klimatyzację oraz zadbany, ogrodzony ogród. Szybki dojazd do Gniezna i Poznania trasą S5. Położony w spokojnej, podmiejskiej okolicy, gotowy do zamieszkania."
       }
     },
     {
@@ -1574,7 +1600,9 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
+          "resale",
           "private_offer",
           "modern",
           "garage",
@@ -1586,7 +1614,7 @@
           "good_commute",
           "suburban"
         ],
-        "summary": "Spokojny dom jednorodzinny z 2019 roku o powierzchni 120m² (3 pokoje) na dużej, ogrodzonej działce 1500m² tuż przy Puszczy Kozienickiej. Posiada garaż, miejsce parkingowe i zadbany ogród. Oferta prywatna, idealna dla ceniących ciszę i dobry dojazd."
+        "summary": "Dom jednorodzinny o powierzchni 120 m² na dużej, ogrodzonej działce 1500 m² z ogrodem i garażem, położony przy lesie w spokojnej, podmiejskiej okolicy z dobrym dojazdem do trasy Radom-Lublin. Oferta prywatna, gotowy do zamieszkania."
       }
     },
     {
@@ -1616,15 +1644,17 @@
       },
       "gemini": {
         "tags": [
+          "budget",
           "medium",
           "new_build",
           "private_offer",
           "needs_finishing",
-          "garden"
+          "garden",
+          "family_friendly"
         ],
-        "summary": "Oferta prywatna: dom bliźniak w Rawiczu o powierzchni 100 m², w stanie deweloperskim/surowym zamkniętym, z działką 240-300 m². Ogrzewanie gazowe, podłogowe. Cena 420 000 zł.",
+        "summary": "Bliźniak w Rawiczu w stanie surowym zamkniętym, z możliwością wykończenia do stanu deweloperskiego. Oferuje działki o powierzchni od 240 m2 i jest idealny dla rodzin. Oferta prywatna.",
         "warnings": [
-          "Tags 'budget', 'mid_range', 'premium' omitted due to lack of definition rules."
+          "Price discrepancy: `knownFields.priceAmount` (420,000 PLN) vs. description ('Cena od 550 000 zł'). Tagging based on `knownFields.priceAmount` as per rules."
         ]
       }
     },
@@ -1661,6 +1691,7 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
           "new_build",
           "developer_offer",
@@ -1669,9 +1700,10 @@
           "fenced_area",
           "quiet_area",
           "near_forest",
-          "family_friendly"
+          "family_friendly",
+          "modern"
         ],
-        "summary": "Nowe domy jednorodzinne w Rzepinie (99 m², 5 pokoi) w stanie deweloperskim, z działką ok. 700 m², ogrodzone. Położone w spokojnej, rodzinnej okolicy blisko lasu. Idealna inwestycja dla rodziny."
+        "summary": "Domy jednorodzinne w Rzepinie, w stanie deweloperskim (99 m², 5 pokoi), z działkami 600–700 m² i ogrodzonym terenem. Charakteryzują się nowoczesną, energooszczędną konstrukcją. Położone w spokojnej, rodzinnej okolicy blisko lasu. Idealne do własnej aranżacji."
       }
     },
     {
@@ -1705,17 +1737,19 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "very_large",
+          "resale",
+          "modern",
           "garage",
           "parking",
           "garden",
           "near_transport",
           "quiet_area",
           "near_forest",
-          "family_friendly",
-          "good_commute"
+          "family_friendly"
         ],
-        "summary": "Obszerny i zadbany dom w Łodzi na Julianowie, idealny dla rodziny. Posiada dużą działkę z ogrodem i dwoma garażami. Zlokalizowany w cichej, zielonej okolicy blisko Lasu Łagiewnickiego, z dobrym dojazdem, komunikacją miejską i placówkami edukacyjnymi."
+        "summary": "Obszerny i zadbany dom na Julianowie w Łodzi, idealny dla rodziny. Oferuje dużą działkę z ogrodem, liczne pokoje, garaż i parking. Zlokalizowany w spokojnej okolicy, blisko transportu publicznego, terenów zielonych i pełnej infrastruktury edukacyjnej."
       }
     },
     {
@@ -1740,16 +1774,19 @@
       },
       "gemini": {
         "tags": [
+          "budget",
           "medium",
+          "resale",
+          "private_offer",
           "garage",
           "parking",
           "garden",
+          "fenced_area",
           "quiet_area",
-          "family_friendly",
           "suburban",
-          "fenced_area"
+          "family_friendly"
         ],
-        "summary": "Domek rekreacyjny o pow. 90m2 pod Olsztynem, nad Jeziorem Wulpińskim, w cichej, ogrodzonej strefie. Posiada 4 pokoje, garaż, miejsca parkingowe, działkę 520m2 i prywatny dostęp do plaży z pomostem. Idealny dla rodziny."
+        "summary": "Domek pod Olsztynem z pięknym widokiem na jezioro, 90m2, 4 pokoje. Posiada garaż, parking, ogród na ogrodzonym terenie. Cicha, podmiejska lokalizacja nad Jeziorem Wulpińskim. Cena: 399 tys. PLN. Oferta wtórna, idealna dla rodziny."
       }
     },
     {
@@ -1783,21 +1820,23 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
           "new_build",
           "developer_offer",
+          "needs_finishing",
+          "modern",
           "garage",
+          "parking",
           "garden",
           "near_transport",
+          "good_commute",
           "quiet_area",
           "near_forest",
-          "family_friendly",
-          "modern",
-          "needs_finishing",
-          "good_commute",
-          "suburban"
+          "suburban",
+          "family_friendly"
         ],
-        "summary": "Nowoczesny dom bliźniaczy od dewelopera, w stanie deweloperskim, z garażem i ogrodem. Położony w cichej i zielonej okolicy Mysłowic, blisko lasu oraz z dobrym dojazdem do centrum i autostrady A4. Idealny dla rodzin."
+        "summary": "Domy w zabudowie bliźniaczej w Mysłowicach, oferujące 4 pokoje i powierzchnię 103.91 m². Nowa inwestycja dewelopera, o nowoczesnej architekturze, do wykończenia. Posiada garaż i ogród. Położona w cichej okolicy, blisko lasu, z dobrym dojazdem do centrum i autostrady A4. Idealna dla rodzin."
       }
     },
     {
@@ -1829,6 +1868,7 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
           "new_build",
           "private_offer",
@@ -1838,7 +1878,7 @@
           "near_transport",
           "family_friendly"
         ],
-        "summary": "Dom w nowym budownictwie w Grodzisku Mazowieckim, 135 m², 5 pokoi, stan deweloperski do wykończenia. Posiada ogród i ogrodzoną działkę. Blisko WKD i przystanków autobusowych, idealny dla rodziny. Oferta prywatna."
+        "summary": "Dom na sprzedaż w Grodzisku Mazowieckim, w nowym budownictwie o powierzchni 135 m² z 5 pokojami, na działce 200 m². Wymaga wykończenia, posiada metalowe ogrodzenie. Zlokalizowany blisko WKD i przystanków autobusowych. Oferta prywatna."
       }
     },
     {
@@ -1877,14 +1917,14 @@
           "medium",
           "new_build",
           "private_offer",
-          "modern",
           "parking",
           "garden",
           "fenced_area",
           "quiet_area",
-          "family_friendly"
+          "family_friendly",
+          "modern"
         ],
-        "summary": "Nowoczesne domy z własną mariną nad Jeziorem Ryńskim w Rynie, sprzedaż od właściciela. Oferta \"pod klucz\" w zamkniętym osiedlu, z ogrodem i parkingiem. Idealne dla rodzin ceniących spokój i luksusowe życie nad wodą."
+        "summary": "Domy z własną mariną nad Jeziorem Ryńskim, wykończone pod klucz, z ogrodem i miejscami parkingowymi. Oferta prywatna, na zamkniętym osiedlu, idealna dla rodzin. Blisko infrastruktury Rynu, w cichej, spokojnej okolicy."
       }
     },
     {
@@ -1920,16 +1960,18 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "very_large",
+          "resale",
           "private_offer",
           "parking",
           "garden",
           "fenced_area",
           "near_forest",
-          "suburban",
-          "family_friendly"
+          "family_friendly",
+          "suburban"
         ],
-        "summary": "Dom mieszkalny o powierzchni 331 m2 w Bobolinie, przystosowany również pod pensjonat. Posiada 10 pokoi, duży ogród (584 m2), parking i teren ogrodzony. Położony jest w podmiejskiej okolicy blisko lasu i plaży, idealny dla rodziny."
+        "summary": "Duży dom (331 m², 10 pokoi) na sprzedaż w nadmorskiej miejscowości Bobolin, przystosowany także na pensjonat. Posiada ogrodzony teren, parking, ogród i znajduje się blisko lasu oraz plaży. Oferta prywatna z rynku wtórnego, rok budowy 2008."
       }
     },
     {
@@ -1964,23 +2006,23 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "medium",
           "new_build",
           "developer_offer",
           "needs_finishing",
-          "modern",
           "garage",
           "parking",
           "garden",
           "fenced_area",
+          "suburban",
           "quiet_area",
           "near_forest",
-          "suburban",
           "near_transport",
           "good_commute",
           "family_friendly"
         ],
-        "summary": "Dom 150 m² z 5 pokojami w Krzyszkowicach, nowa inwestycja deweloperska. Stan deweloperski, nowoczesny projekt, garaż, parking, ogród. Cicha i zielona okolica, blisko lasu, z dobrym dojazdem do Krakowa i udogodnień dla rodzin. Ogrodzony teren."
+        "summary": "Nowy dom wolnostojący (150 m², 5 pokoi) w Krzyszkowicach, oferowany w stanie deweloperskim. Położony w cichej, podmiejskiej okolicy blisko lasu i transportu publicznego, z ogrodem, garażem i parkingiem. Cena premium."
       }
     },
     {
@@ -2012,7 +2054,9 @@
       },
       "gemini": {
         "tags": [
+          "budget",
           "large",
+          "resale",
           "needs_finishing",
           "garage",
           "parking",
@@ -2021,7 +2065,7 @@
           "suburban",
           "family_friendly"
         ],
-        "summary": "Dom w stanie surowym otwartym o powierzchni 159,53 m² z 5 pokojami, położony na dużej działce 5162 m² w cichej i spokojnej dzielnicy Krasna w Cieszynie, około 4,5 km od centrum. Posiada garaż i parking. Idealny dla rodziny, wymaga wykończenia."
+        "summary": "Dom w stanie surowym otwartym o powierzchni 159,53 m² na dużej działce 5162 m² w Cieszynie. Posiada 5 pokoi, garaż i parking. Oferta z rynku wtórnego, idealna dla rodziny. Cicha i spokojna okolica, około 4,5 km od centrum miasta."
       }
     },
     {
@@ -2056,7 +2100,9 @@
       },
       "gemini": {
         "tags": [
-          "large",
+          "budget",
+          "medium",
+          "resale",
           "private_offer",
           "garage",
           "parking",
@@ -2067,10 +2113,7 @@
           "needs_renovation",
           "suburban"
         ],
-        "summary": "Dom o pow. 150 m² z 5 pokojami na dużej działce (1800 m²) w Chełmku, idealny dla rodziny. Położony w cichej, podmiejskiej okolicy, blisko lasu. Posiada ogród i garaż/miejsce parkingowe. Nieruchomość wymaga remontu. Oferta prywatna.",
-        "warnings": [
-          "The area 150 m2 fits both 'medium' (90-150 m2) and 'large' (150-220 m2) size categories based on the provided rules. 'large' was chosen for a house of this size."
-        ]
+        "summary": "Dom parterowy z poddaszem o powierzchni 150 m2, na działce 1800 m2, z 5 pokojami. Wymaga remontu. Położony w cichej i spokojnej okolicy na obrzeżach Chełmka, w sąsiedztwie lasu. Posiada ogród i miejsce parkingowe. Cena 375 000 zł."
       }
     },
     {
@@ -2106,20 +2149,21 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
           "new_build",
+          "developer_offer",
           "needs_finishing",
-          "modern",
           "parking",
           "garden",
           "fenced_area",
-          "good_commute",
           "quiet_area",
+          "good_commute",
           "near_forest",
           "suburban",
           "family_friendly"
         ],
-        "summary": "Nowoczesny dom wolnostojący w Krzyszkowicach (101 m²) na rynek pierwotny. Oferuje ogród, parking i ogrodzony teren. Jest w stanie deweloperskim do wykończenia. Spokojna, zielona okolica blisko lasu, z dobrym dojazdem do Myślenic i Krakowa. Idealny dla rodziny."
+        "summary": "Nowoczesny dom wolnostojący w Krzyszkowicach (gm. Myślenice), w standardzie deweloperskim. Idealny dla rodziny (3 pokoje, 101 m²), w spokojnej, zielonej okolicy z dobrym dojazdem do Krakowa. Posiada ogród, parking i ogrodzoną działkę. Cena 839 000 PLN."
       }
     },
     {
@@ -2153,19 +2197,21 @@
       },
       "gemini": {
         "tags": [
-          "family_friendly",
-          "fenced_area",
-          "garden",
+          "mid_range",
           "medium",
-          "modern",
-          "near_forest",
-          "needs_finishing",
           "new_build",
+          "developer_offer",
+          "needs_finishing",
+          "modern",
+          "garden",
+          "fenced_area",
           "parking",
           "quiet_area",
-          "suburban"
+          "near_forest",
+          "suburban",
+          "family_friendly"
         ],
-        "summary": "Nowoczesny dom w Grajowie, 122.53 m², 5 pokoi. Nowa budowa, stan deweloperski do wykończenia. Posiada ogród, parking i ogrodzoną działkę. Usytuowany w cichej, podmiejskiej okolicy blisko lasu, idealny dla rodziny."
+        "summary": "Nowoczesny dom w Grajowie, z 5 pokojami i powierzchnią 122.53 m², wymaga wykończenia. Oferuje ogród, parking i jest zlokalizowany w cichej, podmiejskiej okolicy blisko lasu, idealny dla rodziny."
       }
     },
     {
@@ -2199,7 +2245,9 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "very_large",
+          "resale",
           "garage",
           "parking",
           "garden",
@@ -2207,7 +2255,7 @@
           "near_forest",
           "family_friendly"
         ],
-        "summary": "Duży dom (290 m², 7 pokoi) w Zakopanem, idealny dla dużej rodziny lub pod wynajem. Z garażem, parkingiem i działką 484 m², blisko lasu oraz 500m od dworca. Do Krupówek 2km. Status: wtórny, do zamieszkania."
+        "summary": "Przestronny dom o powierzchni 290 m² z 7 pokojami w Zakopanem, idealny dla dużej rodziny lub jako inwestycja pod wynajem. Zlokalizowany 2 km od Krupówek, z garażem, parkingiem i działką, blisko dworca i lasu. Oferta z rynku wtórnego, cena premium."
       }
     },
     {
@@ -2242,15 +2290,16 @@
         "tags": [
           "premium",
           "large",
-          "modern",
+          "resale",
           "garage",
           "garden",
           "quiet_area",
           "near_forest",
-          "suburban",
-          "family_friendly"
+          "family_friendly",
+          "modern",
+          "suburban"
         ],
-        "summary": "Wysokiej klasy dom wolnostojący o pow. 164 m2 (5 pokoi) w Suszcu, z ogrodem i garażem. Wybudowany w 2015 r., gotowy do zamieszkania. Oferuje nowoczesne udogodnienia, bliskość lasów i szkoły, doskonały dla rodziny. W pobliżu CH Wiślanka w Żorach."
+        "summary": "Wolnostojący dom o wysokim standardzie w Suszcu, o powierzchni 164 m² z 5 pokojami, wybudowany w 2015 roku, gotowy do zamieszkania. Posiada garaż, zagospodarowany ogród z systemem nawadniania. Położony w cichej, zalesionej okolicy, blisko infrastruktury, idealny dla rodziny."
       }
     },
     {
@@ -2286,8 +2335,9 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "large",
-          "new_build",
+          "resale",
           "private_offer",
           "modern",
           "parking",
@@ -2295,10 +2345,12 @@
           "fenced_area",
           "near_forest",
           "city_center",
-          "suburban",
           "family_friendly"
         ],
-        "summary": "Dwa nowoczesne domy letniskowe (160 m²) nad J. Białym w Okunince, blisko jeziora (100m), lasu i centrum. Zadbane, w pełni wyposażone, z dużym ogrodem, parkingiem na 9 aut i placem zabaw. Rynek pierwotny, oferta prywatna, teren zamknięty. Idealne dla rodziny lub pod inwestycję."
+        "summary": "Dwa domy letniskowe w stylu skandynawskim nad jeziorem Białym w Okunince, 100m do wody i 300m do lasu/centrum. Nieruchomość z 2018 roku, zadbana, remontowana, w pełni wyposażona, z parkingiem, ogrodem i placem zabaw. Doskonała inwestycja z wysokim ROI.",
+        "warnings": [
+          "Contradictory information regarding market type: Otodom attribute 'Rynek: pierwotny' (primary) conflicts with 'Typ ogłoszeniodawcy: prywatny' (private) and description details indicating resale."
+        ]
       }
     },
     {
@@ -2332,17 +2384,19 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
           "new_build",
           "developer_offer",
           "needs_finishing",
           "modern",
           "garden",
-          "good_commute",
           "quiet_area",
+          "good_commute",
+          "city_center",
           "family_friendly"
         ],
-        "summary": "Nowoczesny dom jednorodzinny, rynek pierwotny, w Kościanie. 4 pokoje, 130.62 m2, działka 443 m2. W podwyższonym standardzie deweloperskim, do wykończenia. Cicha okolica, dobry dojazd do centrum i Poznania, idealny dla rodziny. Gotowy 2026."
+        "summary": "Nowoczesny dom jednorodzinny w Kościanie, w podwyższonym standardzie deweloperskim, do wykończenia. Oferta deweloperska na rynku pierwotnym, z 4 pokojami i ogrodem. Cicha, rodzinna okolica z dobrym dojazdem do centrum i Poznania."
       }
     },
     {
@@ -2377,23 +2431,24 @@
       },
       "gemini": {
         "tags": [
-          "premium",
+          "mid_range",
           "medium",
           "new_build",
-          "developer_offer",
+          "private_offer",
           "needs_finishing",
           "modern",
+          "garage",
           "parking",
           "garden",
           "quiet_area",
           "near_forest",
-          "suburban",
           "near_transport",
+          "suburban",
           "family_friendly"
         ],
-        "summary": "Nowy, deweloperski segment w Osielsku (90-119m2) w standardzie premium, do wykończenia. Posiada ogród, parking i nowoczesne rozwiązania. Zlokalizowany w cichej, podmiejskiej okolicy blisko lasu, ze szkołami i komunikacją autobusową w pobliżu.",
+        "summary": "Nowoczesne segmenty w Osielsku, w cichej podmiejskiej okolicy blisko lasu i komunikacji, oferowane w standardzie deweloperskim (do wykończenia). Inwestycja z ogrodem i miejscami parkingowymi, planowane oddanie w 2027 roku. Dostępne metraże od 90 m² do 119 m², w cenach przedsprzedażowych od 599 000 zł.",
         "warnings": [
-          "Discrepancy: 'Typ ogłoszeniodawcy' is 'prywatny' but description strongly indicates 'developer_offer' (ustawa deweloperska, DFG)."
+          "The 'Typ ogłoszeniodawcy: prywatny' attribute (private offer) contradicts the description's mention of 'ustawą deweloperską' and 'Deweloperski Fundusz Gwarancyjny', which typically indicate a developer offer."
         ]
       }
     },
@@ -2429,21 +2484,22 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
           "new_build",
           "developer_offer",
+          "needs_finishing",
           "parking",
           "garden",
           "fenced_area",
-          "quiet_area",
+          "suburban",
           "near_forest",
-          "family_friendly",
-          "modern",
-          "needs_finishing",
+          "quiet_area",
           "good_commute",
-          "suburban"
+          "family_friendly",
+          "modern"
         ],
-        "summary": "Nowoczesny dom bliźniaczy o pow. 91,82 m² (4 pokoje) w stanie deweloperskim, z ogrodem 400 m² i miejscem parkingowym. Położony w spokojnej, podmiejskiej okolicy Betkowa, z dobrym dojazdem do Poznania, w otoczeniu zieleni i blisko lasu. Idealny dla rodzin."
+        "summary": "Komfortowy dom w zabudowie bliźniaczej w Betkowie koło Czempinia, w stanie deweloperskim. Posiada 4 pokoje, ogród 400m², parking. Zlokalizowany w spokojnej, podmiejskiej okolicy blisko lasu, z dobrym dojazdem do Poznania. Idealny dla rodziny."
       }
     },
     {
@@ -2477,20 +2533,18 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
           "new_build",
+          "developer_offer",
+          "needs_finishing",
           "garden",
           "quiet_area",
-          "family_friendly",
-          "modern",
-          "needs_finishing",
+          "suburban",
           "good_commute",
-          "suburban"
+          "family_friendly"
         ],
-        "summary": "Nowoczesny dom bliźniaczy (4 pokoje) w stanie deweloperskim w Starym Luboszu (k. Kościana). Duża działka, ogrzewanie podłogowe. Cicha, rodzinna okolica z dobrym dojazdem do Kościana i Poznania. Idealny dla rodziny.",
-        "warnings": [
-          "Budget/mid_range/premium tags omitted as no specific rules were provided for price ranges."
-        ]
+        "summary": "Dom w zabudowie bliźniaczej w stanie deweloperskim w Starym Luboszu (k. Kościana). Posiada 4 pokoje, powierzchnię 91.82 m², działkę 450 m². Zlokalizowany w spokojnej, podmiejskiej okolicy z dobrym dojazdem do Kościana i Poznania. Idealny dla rodziny, wymaga wykończenia."
       }
     },
     {
@@ -2525,16 +2579,18 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "small",
+          "resale",
           "private_offer",
+          "modern",
           "garden",
           "quiet_area",
           "near_forest",
           "family_friendly",
-          "modern",
           "suburban"
         ],
-        "summary": "Przytulny szeregowiec w Biedrusku (82 m², 4 pokoje), wybudowany w 2021 roku. Położony w spokojnej wsi otoczonej lasami, z bliskim dostępem do szkół, przedszkoli i placów zabaw. Idealny dla rodziny, gotowy do zamieszkania."
+        "summary": "Przytulny szeregowiec z 2021 roku w Biedrusku (82 m², 4 pokoje) w stanie do zamieszkania, z ogrodem 80 m². Położony w spokojnej wsi otoczonej lasami, blisko szkół i przedszkoli. Oferta prywatna."
       }
     },
     {
@@ -2567,20 +2623,21 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "large",
           "new_build",
           "private_offer",
           "garage",
           "parking",
           "garden",
-          "near_transport",
           "quiet_area",
           "near_forest",
-          "family_friendly",
+          "near_transport",
           "good_commute",
-          "suburban"
+          "suburban",
+          "family_friendly"
         ],
-        "summary": "Segment środkowy w Kobyłce (160m²) z garażem i ogrodem 250m². Gotowy do zamieszkania, zrobione podłogi i łazienki. Zlokalizowany w cichej okolicy, blisko lasu oraz PKP Ossów. Dobry dojazd do centrum, w pobliżu szkoły i przedszkola. Oferta prywatna na rynku pierwotnym, bez PCC."
+        "summary": "Segment środkowy w Kobyłce, 160m², 5 pokoi, z garażem i ogrodem 250m². Nowy budynek od osoby prywatnej, w stanie do zamieszkania. Cicha okolica, blisko lasu, z dobrym dojazdem (PKP Ossów) do centrum i bliskością szkół i przedszkoli."
       }
     },
     {
@@ -2614,20 +2671,22 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "large",
+          "resale",
           "private_offer",
+          "needs_renovation",
           "garage",
           "parking",
           "garden",
           "fenced_area",
-          "near_transport",
-          "quiet_area",
-          "good_commute",
           "city_center",
-          "family_friendly",
-          "needs_renovation"
+          "quiet_area",
+          "near_transport",
+          "good_commute",
+          "family_friendly"
         ],
-        "summary": "Duży dom do remontu w centrum Gliwic, oferowany przez prywatnego właściciela. Posiada 5 pokoi, garaż, duży ogród oraz ogrodzoną działkę. Idealny dla rodziny, z doskonałym dojazdem i bliskością komunikacji miejskiej."
+        "summary": "Przestronny dom do remontu w Gliwicach (Ogrodów), 151 m², 5 pokoi. Posiada garaż, dwa ogrody i ogrodzony teren. Idealny dla rodziny, zlokalizowany blisko centrum w spokojnej okolicy z dobrym dojazdem do komunikacji i A4. Oferta prywatna z rynku wtórnego."
       }
     },
     {
@@ -2662,6 +2721,7 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "large",
           "new_build",
           "developer_offer",
@@ -2670,15 +2730,16 @@
           "parking",
           "garden",
           "fenced_area",
+          "near_transport",
           "good_commute",
           "quiet_area",
           "near_forest",
           "suburban",
           "family_friendly"
         ],
-        "summary": "Dom wolnostojący w stanie surowym otwartym na zamkniętym osiedlu Wiśniowa Góra w Wilkszynie, blisko Lasu Mokrzańskiego. Powierzchnia 163 m², 4 pokoje, działka 741 m². Idealny dla rodzin, z dobrym dojazdem do Wrocławia, wymaga wykończenia. Termin przekazania: maj 2026.",
+        "summary": "Dom wolnostojący w stanie surowym otwartym na nowym, zamkniętym osiedlu w Wilkszynie (gmina Miękinia), blisko Lasu Mokrzańskiego. Oferta deweloperska z możliwością wykończenia pod klucz, z ogrodem i garażem, idealna dla rodzin z dobrym dojazdem do Wrocławia.",
         "warnings": [
-          "The 'Typ ogłoszeniodawcy: prywatny' attribute contradicts 'Rynek: pierwotny' and description details (VAT, developer partnerships), which strongly indicate a developer offer."
+          "Listing attributes indicate 'Typ ogłoszeniodawcy: prywatny', which contradicts the description's mention of 8% VAT, typically associated with developer offers on the primary market."
         ]
       }
     },
@@ -2715,19 +2776,19 @@
           "mid_range",
           "medium",
           "new_build",
-          "developer_offer",
+          "needs_finishing",
+          "modern",
+          "garage",
           "parking",
           "garden",
           "quiet_area",
           "near_forest",
           "family_friendly",
-          "modern",
-          "needs_finishing",
           "good_commute",
           "suburban",
           "fenced_area"
         ],
-        "summary": "Nowoczesny bliźniak w stanie deweloperskim, 107 m² z ogrodem 480 m², położony w spokojnej okolicy pod Ślężą, z dobrym dojazdem (20-30 min) do Wrocławia. Idealny dla rodziny, z miejscami postojowymi i ogrodzoną działką. Sprzedaż bezpośrednia od dewelopera."
+        "summary": "Nowoczesny bliźniak 107 m² w Sobótce z ogrodem 480 m², gotowy do wykończenia. Zlokalizowany w spokojnej, rodzinnej okolicy u podnóża Ślęży, z dobrym dojazdem do Wrocławia. Posiada miejsca parkingowe i ogrodzoną działkę."
       }
     },
     {
@@ -2763,7 +2824,9 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "large",
+          "resale",
           "modern",
           "garage",
           "parking",
@@ -2774,7 +2837,7 @@
           "suburban",
           "family_friendly"
         ],
-        "summary": "Przestronny, energooszczędny dom wolnostojący (202m², 6 pokoi) w cichej i zielonej Zebrzydowicach, idealny dla rodziny. Oferuje dużą, ogrodzoną działkę (12 ar) z ogrodem, garażem i parkingiem. Wyposażony w fotowoltaikę i solary, po odświeżeniu, gotowy do zamieszkania."
+        "summary": "Energooszczędny dom (202m², 6 pokoi, działka 12 ar) z garażem, fotowoltaiką i ogrodem w spokojnej, zielonej okolicy Zebrzydowic (wieś), blisko lasu. Wybudowany w 2013, nowoczesny, gotowy do zamieszkania. Idealny dla rodziny."
       }
     },
     {
@@ -2809,18 +2872,20 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "large",
+          "resale",
           "modern",
           "garage",
           "parking",
           "garden",
-          "good_commute",
           "quiet_area",
           "near_forest",
           "suburban",
+          "good_commute",
           "family_friendly"
         ],
-        "summary": "Nowoczesny dom wolnostojący (207 m², 6 pokoi) z 2023 r., położony w Łubnianach pod Opolem. Działka graniczy z lasem, co zapewnia ciszę i kontakt z naturą. Posiada dwustanowiskowy garaż i dobry dojazd do Opola. Idealny dla rodziny."
+        "summary": "Nowoczesny dom wolnostojący z 2023 roku, o powierzchni 207 m², z 6 pokojami, dwustanowiskowym garażem i dużą działką graniczącą z lasem. Położony w cichej, podmiejskiej miejscowości Łubniany, z dobrym dojazdem do Opola. Oferta w cenie 1 770 000 PLN."
       }
     },
     {
@@ -2857,19 +2922,18 @@
         "tags": [
           "premium",
           "very_large",
-          "new_build",
+          "resale",
           "garage",
           "parking",
           "garden",
-          "fenced_area",
           "quiet_area",
           "near_forest",
           "family_friendly",
-          "modern",
           "needs_finishing",
-          "suburban"
+          "suburban",
+          "fenced_area"
         ],
-        "summary": "Przestronny dom wolnostojący (240.5 m2, 5 pokoi) w stanie deweloperskim, położony w cichej Dąbrówce Łubniańskiej, blisko Borów Stobrawskich i Opola. Posiada garaż dwustanowiskowy, dużą ogrodzoną działkę (1058 m2) i nowoczesne instalacje. Idealny dla rodzin."
+        "summary": "Przestronny dom parterowy w stanie deweloperskim z garażem dwustanowiskowym, położony na dużej działce 1058 m² w spokojnej Dąbrówce Łubniańskiej, blisko Borów Stobrawskich. Idealny dla rodzin ceniących naturę."
       }
     },
     {
@@ -2904,18 +2968,20 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
+          "resale",
           "private_offer",
+          "needs_renovation",
           "garage",
           "parking",
           "garden",
-          "quiet_area",
-          "family_friendly",
-          "needs_renovation",
+          "fenced_area",
           "city_center",
-          "fenced_area"
+          "quiet_area",
+          "family_friendly"
         ],
-        "summary": "Dom w centrum Jarosławia (120 m², 4 pokoje) z ogrodem (490 m²) i garażem, w spokojnej, rodzinnej okolicy z terenem zamkniętym. Prywatna oferta z 1972 roku, do remontu."
+        "summary": "Dom w centrum Jarosławia o powierzchni 120 m² z 4 pokojami, idealny dla rodziny. Posiada garaż, miejsce parkingowe, ogród i znajduje się w cichej, spokojnej okolicy blisko wszelkich udogodnień. Wymaga remontu, z potencjałem adaptacji strychu i parteru."
       }
     },
     {
@@ -2951,7 +3017,9 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "large",
+          "resale",
           "modern",
           "garage",
           "parking",
@@ -2962,7 +3030,7 @@
           "city_center",
           "family_friendly"
         ],
-        "summary": "Na sprzedaż przytulny i rodzinny dom wolnostojący w Radzionkowie Centrum. Po remoncie generalnym w 2024 r. Posiada 5 pokoi, powierzchnię 154,41 m², garaż, parking, ogród 264 m², blisko komunikacji i lasu. Idealny dla rodziny."
+        "summary": "Przytulny i rodzinny dom wolnostojący w centrum Radzionkowa, po generalnym remoncie w 2024 roku, z 5 pokojami, garażem i ogrodem. Blisko komunikacji miejskiej i lasu."
       }
     },
     {
@@ -2997,6 +3065,7 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
           "new_build",
           "developer_offer",
@@ -3009,10 +3078,9 @@
           "quiet_area",
           "near_forest",
           "suburban",
-          "family_friendly",
-          "mid_range"
+          "family_friendly"
         ],
-        "summary": "4-pokojowy dom w zabudowie bliźniaczej od dewelopera Forall Osiedle Harmonia w Pawłowicach, koło Poznania. Stan deweloperski, do wykończenia. Z ogrodem, miejscami postojowymi i ogrodzonym terenem. Blisko natury (las, jezioro), z dobrym dojazdem do Poznania, idealny dla rodzin. Blisko komunikacji miejskiej."
+        "summary": "4-pokojowy dom w zabudowie bliźniaczej w Pawłowicach, idealny dla rodzin. Oferta dewelopera w stanie deweloperskim, z ogrodem i parkingiem, w spokojnej okolicy blisko lasu i jeziora, z dobrym dojazdem do Poznania."
       }
     },
     {
@@ -3048,7 +3116,9 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "large",
+          "resale",
           "private_offer",
           "modern",
           "garage",
@@ -3056,9 +3126,10 @@
           "garden",
           "good_commute",
           "suburban",
+          "quiet_area",
           "family_friendly"
         ],
-        "summary": "Dom (178 m², 4 pokoje) w Jasienicy, blisko Bielska-Białej. Gotowy do zamieszkania, z dużym ogrodem (1410 m²) i garażem. Wybudowany w 2014, z panelami słonecznymi, idealny dla rodziny i z dobrym dojazdem do S52."
+        "summary": "Przestronny dom (178 m², 4 pokoje) w Jasienicy, oferujący solidne budownictwo z 2014 r. i nowoczesne udogodnienia. Posiada garaż, dużą działkę (1410 m²) i widok na Beskidy. Idealny dla rodziny, ceniącej wiejski spokój, dobry dojazd do Bielska-Białej i gotowy do zamieszkania."
       }
     },
     {
@@ -3094,11 +3165,11 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "very_large",
           "new_build",
           "private_offer",
           "needs_finishing",
-          "modern",
           "garage",
           "parking",
           "garden",
@@ -3106,7 +3177,7 @@
           "suburban",
           "family_friendly"
         ],
-        "summary": "Piękny dom o pow. 320 m2 w stanie deweloperskim, położony na Morasku w Poznaniu, nieopodal lasu. Duża działka (1100 m2), garaż, parking. Nowoczesny projekt, wysoki standard, idealny dla rodziny. Oferta prywatna, rynek pierwotny."
+        "summary": "Piękny, nowo wybudowany dom o powierzchni 320 m² w stanie deweloperskim, sprzedawany bezpośrednio przez właściciela. Położony na dużej działce 1100 m² nieopodal lasu w Poznaniu (Morasko). Oferta z możliwością rozliczenia innej nieruchomości."
       }
     },
     {
@@ -3140,19 +3211,20 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "medium",
           "new_build",
           "developer_offer",
+          "needs_finishing",
+          "modern",
           "garden",
           "fenced_area",
           "near_transport",
           "quiet_area",
           "suburban",
-          "family_friendly",
-          "modern",
-          "needs_finishing"
+          "family_friendly"
         ],
-        "summary": "Luksusowy dom 5-pokojowy (140,1 m²) na zamkniętym osiedlu w Gdyni Wielkim Kacku. Oferta dewelopera, stan do wykończenia. Nowoczesna architektura, ekologiczne rozwiązania, ogród. Blisko transportu publicznego, w cichej i zielonej okolicy, idealny dla rodzin."
+        "summary": "Nowoczesny, 5-pokojowy dom premium w zabudowie szeregowej, na zamkniętym osiedlu deweloperskim Domy u Źródła Marii w Gdyni Wielki Kack. Oferuje nowoczesny design, pompę ciepła, rekuperację, ogród, bliskość transportu publicznego i wymaga wykończenia."
       }
     },
     {
@@ -3188,17 +3260,18 @@
         "tags": [
           "premium",
           "large",
+          "resale",
           "modern",
           "garage",
           "parking",
           "garden",
           "near_transport",
-          "quiet_area",
           "good_commute",
+          "quiet_area",
           "city_center",
           "family_friendly"
         ],
-        "summary": "Luksusowa willa o powierzchni 176,4 m² w Gdyni, na prestiżowym Wzgórzu Św. Maksymiliana. Nowoczesny projekt, wysoki standard, 5 pokoi, garaż na dwa auta i zadbany ogród. Bliskość morza, terenów rekreacyjnych oraz pełna infrastruktura miejska i szybka komunikacja z centrum. Idealna dla rodziny."
+        "summary": "Elegancka willa premium o powierzchni 176,4 m² z 5 pokojami, zlokalizowana w prestiżowej, centralnej części Gdyni. Oferuje nowoczesny standard, garaż, ogród i dobrą komunikację z centrum miasta, w spokojnej okolicy. Idealna dla rodziny."
       }
     },
     {
@@ -3234,17 +3307,19 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "large",
+          "resale",
           "garage",
           "parking",
           "garden",
+          "fenced_area",
           "near_transport",
           "good_commute",
           "near_forest",
-          "family_friendly",
-          "fenced_area"
+          "family_friendly"
         ],
-        "summary": "Dom wolnostojący 171 m², 5 pokoi, Leszno Zaborowo. Posiada garaż, parking, ogród 945 m², ogrodzoną posesję. Dobry dojazd do S5, bliskość komunikacji, szkół i lasu. Idealny dla rodziny."
+        "summary": "Dom wolnostojący z 5 pokojami o pow. 171 m² w Lesznie-Zaborowie, na działce 945 m². Posiada garaż, parking, ogród i jest ogrodzony. Blisko drogi S5, transportu publicznego i szkół, w sąsiedztwie lasu. Oferta wtórna, idealna dla rodziny. Cena 749 000 zł."
       }
     },
     {
@@ -3277,18 +3352,21 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "large",
+          "resale",
           "private_offer",
           "garage",
           "parking",
           "garden",
+          "fenced_area",
           "near_transport",
           "quiet_area",
+          "suburban",
           "family_friendly",
-          "needs_renovation",
-          "fenced_area"
+          "needs_renovation"
         ],
-        "summary": "Duży dom wolnostojący (205 m², 6 pokoi) w Katowicach Podlesiu na działce 1350 m². Oferta prywatna, wymaga remontu. Z garażem, parkingiem i ogrodem. Cicha, zielona okolica, blisko komunikacji publicznej, szkół i przedszkoli. Idealny dla rodziny."
+        "summary": "Przestronny dom jednorodzinny w Katowicach-Podlesiu, położony na dużej, ogrodzonej działce z ogrodem. Dom z 6 pokojami, dwoma miejscami garażowymi i parkingiem, wymaga remontu. Oferta prywatna, blisko komunikacji miejskiej i stacji kolejowej. Idealny dla rodziny."
       }
     },
     {
@@ -3319,16 +3397,18 @@
       },
       "gemini": {
         "tags": [
+          "budget",
           "medium",
+          "resale",
           "private_offer",
+          "needs_renovation",
           "garden",
           "quiet_area",
           "near_forest",
-          "needs_renovation",
           "good_commute",
           "suburban"
         ],
-        "summary": "Działka z domem do generalnego remontu w cichej Komborni. Położona w malowniczej okolicy blisko lasów, z dobrym dojazdem do Krosna i Rzeszowa. Oferta prywatna, idealna dla osób szukających spokoju poza miastem."
+        "summary": "Działka o powierzchni 107 m² z domem do generalnego remontu lub rozbiórki, położona w cichej i spokojnej Komborni. Oferuje piękne widoki, bliskość lasów oraz dobry dojazd do Krosna i Rzeszowa. Idealna na siedlisko lub dom letniskowy."
       }
     },
     {
@@ -3358,6 +3438,7 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "medium",
           "new_build",
           "developer_offer",
@@ -3372,7 +3453,7 @@
           "good_commute",
           "suburban"
         ],
-        "summary": "Nowoczesny dom bliźniaczy z ogrodem (144m², 5 pokoi) w Płochocinie k. Warszawy. Inwestycja deweloperska, rynek pierwotny. Blisko PKP (25 min do Centrum), A2, szkoły i przedszkola. Garaż, parking, rekuperacja. Idealny dla rodziny, w otulinie zieleni Kampinoskiego Parku Narodowego."
+        "summary": "Nowoczesny dom 144m² z ogrodem 450m² w Płochocinie (gm. Ożarów Mazowiecki), oferowany przez dewelopera. Standard premium, energooszczędny, z garażem i parkingiem. Idealny dla rodziny, z doskonałym dojazdem do Warszawy i bliskością Kampinoskiego Parku Narodowego."
       }
     },
     {
@@ -3407,6 +3488,7 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
           "new_build",
           "developer_offer",
@@ -3420,10 +3502,7 @@
           "suburban",
           "family_friendly"
         ],
-        "summary": "Nowoczesny dom szeregowy w stanie deweloperskim (116.5m², 5 pokoi) w Długołęce k. Wrocławia. Cicha, spokojna okolica z szybkim dostępem do obwodnicy i tras S5. Idealny dla rodzin, z garażem, parkingiem i ogrodem. Blisko szkoła i przedszkole.",
-        "warnings": [
-          "Year of construction '2026' is in the future, likely a typo or projected completion."
-        ]
+        "summary": "Nowoczesny dom szeregowy w stanie deweloperskim (5 pokoi, 116.5 m²), położony pod Wrocławiem w Długołęce. Oferuje garaż, parking i ogród, jest dobrze skomunikowany z miastem i trasami, w spokojnej, rodzinnej okolicy."
       }
     },
     {
@@ -3455,17 +3534,19 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
+          "resale",
           "private_offer",
           "garage",
           "parking",
           "garden",
+          "suburban",
           "quiet_area",
           "good_commute",
-          "suburban",
           "family_friendly"
         ],
-        "summary": "Dom jednorodzinny o pow. 110 m² z 4 pokojami i garażem, położony na dużej działce 1024 m² w Ugniewie k. Ostrowi Mazowieckiej. Idealny dla rodziny, w spokojnej okolicy z dobrym dojazdem. Oferta prywatna."
+        "summary": "Dom jednorodzinny 110 m² z garażem i dużą działką 1024 m² w Ugniewie k. Ostrowi Mazowieckiej. Cztery pokoje, z 2005 roku, idealny dla rodziny. Położony w spokojnej okolicy z dobrym dojazdem do Ostrowi Mazowieckiej. Oferta prywatna na rynku wtórnym."
       }
     },
     {
@@ -3493,7 +3574,9 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "large",
+          "resale",
           "needs_finishing",
           "garage",
           "garden",
@@ -3502,7 +3585,7 @@
           "suburban",
           "family_friendly"
         ],
-        "summary": "Pięknie położony dom wolnostojący w stanie surowym otwartym, z panoramicznym widokiem na lasy i Kłodzko. Duża działka, spokojna okolica, 5 min od miasta. Posiada 6 pokoi i dwustanowiskowy garaż. Idealny dla rodziny ceniącej prywatność i kontakt z naturą."
+        "summary": "Wolnostojący dom w stanie surowym otwartym, położony w cichej i spokojnej okolicy na wzgórzu koło Kłodzka. Duża działka z widokiem na lasy, idealny dla rodzin. Posiada 6 pokoi, garaż dwustanowiskowy. Sprzedaż z rynku wtórnego."
       }
     },
     {
@@ -3536,13 +3619,17 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "small",
+          "resale",
           "private_offer",
+          "modern",
           "garden",
-          "near_forest",
-          "fenced_area"
+          "fenced_area",
+          "quiet_area",
+          "near_forest"
         ],
-        "summary": "Komfortowy, całoroczny domek o powierzchni 60 m² na Mazurach (Ruda), wybudowany w 2021 roku. Posiada 3 pokoje, prywatny ogród (działka 660 m²) i jest położony blisko lasu w ogrodzonym terenie. Idealny na prywatny azyl."
+        "summary": "Nowoczesny dom 60m² (3 pokoje) na Mazurach (2021 r.) z działką 660m². Samowystarczalny, położony w cichej okolicy blisko jeziora i lasu. Oferta prywatna."
       }
     },
     {
@@ -3577,39 +3664,21 @@
         "tags": [
           "premium",
           "medium",
+          "resale",
+          "developer_offer",
+          "modern",
+          "garage",
           "parking",
-          "garden",
           "fenced_area",
-          "near_transport",
+          "good_commute",
+          "suburban",
           "quiet_area",
           "near_forest",
-          "family_friendly",
-          "modern",
-          "good_commute",
-          "suburban"
+          "family_friendly"
         ],
-        "summary": "Luksusowe, 4-pokojowe mieszkanie 101 m² w Zalesiu (pod Krakowem). Wysoki standard wykończenia, 2 miejsca parkingowe, ogrodzone osiedle. Cicha i zielona okolica blisko lasu, z dobrym dojazdem do Krakowa. Idealne dla rodziny.",
+        "summary": "Luksusowe, dwupoziomowe mieszkanie o powierzchni 101 m² (4 pokoje) w inwestycji Apartamenty Zalesie pod Krakowem. W wysokim standardzie, z tarasem i dwoma miejscami parkingowymi. Osiedle ogrodzone, w spokojnej okolicy blisko lasu, z dobrym dojazdem do Krakowa.",
         "warnings": [
-          "The 'Rok budowy: 2025' in attributes conflicts with 'Rynek: wtórny' and description of the property being already finished by the owner. Assuming data entry error for 'Rok budowy'."
-        ]
-      }
-    },
-    {
-      "externalId": "ID4Av5K",
-      "tagging": {
-        "title": "Untitled",
-        "description": "",
-        "knownFields": {
-          "priceCurrency": "PLN"
-        },
-        "location": {},
-        "attributes": {}
-      },
-      "gemini": {
-        "tags": [],
-        "summary": "Brak szczegółowych informacji o nieruchomości, nie można przypisać tagów.",
-        "warnings": [
-          "Brak danych wejściowych (tytuł, opis, atrybuty) do przypisania tagów."
+          "Attributes field 'Rok budowy: 2025' contradicts 'Rynek: wtórny' and description stating unit was previously purchased and finished by owner."
         ]
       }
     },
@@ -3646,22 +3715,21 @@
       },
       "gemini": {
         "tags": [
-          "premium",
+          "mid_range",
           "small",
           "new_build",
           "developer_offer",
-          "garage",
+          "needs_finishing",
           "parking",
+          "garage",
           "garden",
           "fenced_area",
+          "good_commute",
           "quiet_area",
           "near_forest",
-          "family_friendly",
-          "modern",
-          "needs_finishing",
-          "good_commute"
+          "family_friendly"
         ],
-        "summary": "Nowy dom szeregowy deweloperski Premium w Katowicach-Zarzeczu (85 m², 4 pokoje) z ogrodem i miejscem parkingowym. W wysokim standardzie deweloperskim, do wykończenia. Zapewnia ciszę, bliskość lasu oraz dogodny dojazd do centrum i okolicznych miast. Idealny dla rodziny."
+        "summary": "Oferta deweloperska nowego domu w Katowicach-Zarzeczu, mały dom o powierzchni 85m² w średnim przedziale cenowym, z 4 pokojami. Posiada parking, garaż, ogród na ogrodzonym terenie i jest w stanie do wykończenia. Lokalizacja zapewnia dobry dojazd, spokój i bliskość lasu, co czyni go przyjaznym dla rodzin."
       }
     },
     {
@@ -3697,18 +3765,18 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "large",
           "new_build",
-          "private_offer",
+          "needs_finishing",
           "garage",
           "parking",
           "garden",
           "near_forest",
-          "family_friendly",
-          "needs_finishing",
-          "suburban"
+          "suburban",
+          "family_friendly"
         ],
-        "summary": "Nowe domy bliźniacze w stanie deweloperskim w Piasecznie-Kamionka, o powierzchni 164 m², z 6 pokojami, garażem i miejscem parkingowym. Duża działka 500 m², w pobliżu lasu, idealne dla rodziny. Oferta prywatna, położenie pod miastem."
+        "summary": "Dom o powierzchni 164 m2 z 6 pokojami, w zabudowie bliźniaczej na osiedlu Lasek Sosnowy w Piasecznie-Kamionka. Oferowany w stanie deweloperskim, z garażem/miejscem parkingowym oraz działką 500 m2. Położony pod miastem, w okolicy lasu, z ceną 1 500 000 PLN."
       }
     },
     {
@@ -3744,19 +3812,19 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "very_large",
+          "resale",
           "private_offer",
           "garage",
-          "parking",
           "garden",
           "near_forest",
           "quiet_area",
           "family_friendly",
           "modern",
-          "suburban",
-          "fenced_area"
+          "suburban"
         ],
-        "summary": "Komfortowy dom o powierzchni 350 m² z podwójnym garażem, położony w spokojnej okolicy, bezpośrednio przy lesie. Oferta prywatna, idealna dla dużej rodziny, z dużą działką i ogrodzonym terenem. Wysoki standard wykończenia, gotowy do zamieszkania."
+        "summary": "Komfortowy dom wolnostojący w Nowym Dworze koło Złotowa, idealny dla rodziny. Posiada podwójny garaż, duży ogród, położony jest w spokojnej okolicy bezpośrednio przy lesie. Oferta prywatna, rynek wtórny. Wysoki standard wykończenia, 6 pokoi, powierzchnia 350 m2."
       }
     },
     {
@@ -3792,20 +3860,20 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
           "new_build",
           "developer_offer",
-          "needs_finishing",
-          "modern",
           "garage",
           "parking",
           "garden",
-          "fenced_area",
           "near_forest",
-          "suburban",
-          "family_friendly"
+          "family_friendly",
+          "modern",
+          "needs_finishing",
+          "fenced_area"
         ],
-        "summary": "Nowoczesny dom szeregowy w Mikołowie (Kamionka), 135.54m2, 4 pokoje, rynek pierwotny, do wykończenia. Posiada ogród, garaż/parking, teren zamknięty i znajduje się blisko lasu. Idealny dla rodziny."
+        "summary": "Nowoczesny dom szeregowy na sprzedaż w Mikołowie-Kamionce, o powierzchni 135,54 m2, z 4 pokojami i ogrodem. Oferta deweloperska na rynku pierwotnym, wymaga wykończenia. Posiada garaż/miejsce parkingowe i znajduje się w ogrodzonej okolicy blisko lasu."
       }
     },
     {
@@ -3840,17 +3908,21 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "medium",
+          "resale",
+          "developer_offer",
+          "modern",
+          "garage",
           "parking",
           "garden",
+          "fenced_area",
           "near_transport",
           "good_commute",
           "city_center",
-          "suburban",
-          "fenced_area",
           "family_friendly"
         ],
-        "summary": "Połowa bliźniaka z ogrodem 60m² i miejscem postojowym, na zamkniętym osiedlu w Rembertowie. Budynek z 2019 r. blisko transportu publicznego, idealny dla rodziny, z dobrym dojazdem do centrum Warszawy."
+        "summary": "Połowa bliźniaka z ogrodem 60m² i miejscem postojowym, zlokalizowana na zamkniętym osiedlu w centralnej części Rembertowa (Warszawa). Nieruchomość z 2019 roku, w dobrym stanie, posiada 4 pokoje oraz przestrzeń do własnej aranżacji. Idealna dla małej rodziny, z dobrą komunikacją miejską."
       }
     },
     {
@@ -3888,18 +3960,16 @@
           "medium",
           "new_build",
           "developer_offer",
-          "garage",
+          "needs_finishing",
+          "modern",
           "parking",
           "garden",
-          "quiet_area",
-          "family_friendly",
-          "modern",
-          "needs_finishing",
           "good_commute",
+          "quiet_area",
           "suburban",
-          "fenced_area"
+          "family_friendly"
         ],
-        "summary": "Nowoczesny bliźniak w stanie deweloperskim w prestiżowej Woli Justowskiej w Krakowie. Oferta deweloperska z prywatnym ogrodem, garażem i miejscem parkingowym. Powierzchnia 149 m², 4 pokoje, cicha okolica z dobrym dojazdem do centrum."
+        "summary": "Nowoczesny bliźniak z prywatnym ogrodem w prestiżowej, zielonej dzielnicy Krakowa Wola Justowska. Oferta dewelopera, stan deweloperski, z licznymi udogodnieniami Smart Home i dobrym dojazdem do centrum, idealny dla rodziny."
       }
     },
     {
@@ -3937,17 +4007,15 @@
           "medium",
           "new_build",
           "developer_offer",
-          "garage",
           "parking",
           "garden",
-          "needs_finishing",
-          "modern",
-          "good_commute",
           "quiet_area",
+          "good_commute",
           "family_friendly",
-          "suburban"
+          "modern",
+          "needs_finishing"
         ],
-        "summary": "Nowoczesny bliźniak na prestiżowej Woli Justowskiej w Krakowie (149 m², 4 pokoje). Oferta dewelopera, stan do wykończenia. Posiada prywatny ogród i parking. Szybki dojazd do centrum, cicha okolica, idealny dla rodziny."
+        "summary": "Nowoczesny bliźniak w inwestycji deweloperskiej Leśmiana Garden w prestiżowej Woli Justowskiej w Krakowie. Oferowany w stanie deweloperskim, z prywatnym ogrodem, parkingiem i dobrym dojazdem do centrum, idealny dla rodzin."
       }
     },
     {
@@ -3982,18 +4050,21 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "large",
+          "resale",
           "private_offer",
+          "modern",
+          "garage",
           "parking",
           "garden",
           "fenced_area",
-          "quiet_area",
           "near_transport",
           "good_commute",
-          "family_friendly",
-          "modern"
+          "quiet_area",
+          "family_friendly"
         ],
-        "summary": "Komfortowy dom 170m² po generalnym remoncie w Chrzanowie, gotowy do zamieszkania. Posiada 4 pokoje, ogród, parking i ogrodzony teren. Położony w cichej okolicy z doskonałym dojazdem do Krakowa/Katowic i dostępem do PKP/komunikacji miejskiej oraz pełnej infrastruktury dla rodzin."
+        "summary": "Komfortowy dom o pow. 170 m² w Chrzanowie, po generalnym remoncie w 2021 r., gotowy do zamieszkania. Posiada 4 pokoje, ogród, wiatę na dwa samochody. Położony w spokojnej okolicy z dobrym dostępem do komunikacji publicznej, szkół i sklepów. Oferta prywatna."
       }
     },
     {
@@ -4030,19 +4101,19 @@
         "tags": [
           "premium",
           "very_large",
+          "resale",
           "modern",
           "garage",
           "parking",
           "garden",
-          "fenced_area",
           "near_forest",
           "quiet_area",
+          "suburban",
           "near_transport",
           "good_commute",
-          "suburban",
           "family_friendly"
         ],
-        "summary": "Wyjątkowa rezydencja o pow. 1000 m2 w Łomiankach pod Warszawą, po generalnym remoncie, na działce 6800 m2. Posiada basen, garaż na 3 auta. Nowoczesny, premium standard. Blisko lasu, w cichej okolicy z dobrym dojazdem do stolicy. Idealna dla rodzin."
+        "summary": "Wyjątkowa, luksusowa rezydencja po generalnym remoncie w podwarszawskich Łomiankach. Nieruchomość o powierzchni 1000 m², z 8 pokojami, basenem, garażem na 3 samochody i ogrodem 6800 m², położona w cichej okolicy graniczącej z lasem, z dobrym dojazdem do Warszawy i blisko komunikacji miejskiej. Idealna dla rodzin."
       }
     },
     {
@@ -4074,7 +4145,10 @@
       },
       "gemini": {
         "tags": [
+          "budget",
           "small",
+          "resale",
+          "developer_offer",
           "private_offer",
           "garage",
           "parking",
@@ -4082,9 +4156,10 @@
           "fenced_area",
           "quiet_area",
           "near_forest",
+          "suburban",
           "family_friendly"
         ],
-        "summary": "Uroczy domek drewniany o pow. 70 m² z potencjałem agroturystycznym w sercu Doliny Baryczy (Czeszyce). Na dużej działce (2077 m²) z garażem, w otoczeniu lasów i stawów. Idealny dla rodziny lub jako inwestycja, w cichej i spokojnej okolicy."
+        "summary": "Uroczy drewniany domek na sprzedaż w sercu Doliny Baryczy, idealny pod agroturystykę lub wypoczynek dla rodziny. Posiada garaż, dużą działkę 2077 m² i znajduje się w spokojnej okolicy blisko lasów i stawów. Oferta prywatna."
       }
     },
     {
@@ -4120,18 +4195,21 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "large",
+          "resale",
           "garage",
           "parking",
           "garden",
           "fenced_area",
-          "good_commute",
+          "near_transport",
           "quiet_area",
           "near_forest",
-          "suburban",
-          "family_friendly"
+          "family_friendly",
+          "good_commute",
+          "suburban"
         ],
-        "summary": "Wykończony dom wolnostojący o pow. 154 m² na dużej działce 852 m² w Wólce Przybójewskiej. Posiada 7 pokoi, garaże, parking i zagospodarowany ogród. Cicha, spokojna okolica blisko lasu i rzeki, z dobrym dojazdem do Nowego Dworu Mazowieckiego i Warszawy. Idealny dla rodziny."
+        "summary": "W pełni wykończony dom z dużym ogrodem i garażem, położony w spokojnej, podmiejskiej okolicy Wólki Przybójewskiej, blisko lasu i rzeki. Idealny dla rodziny, z dobrym dojazdem do Nowego Dworu Mazowieckiego i Warszawy."
       }
     },
     {
@@ -4167,22 +4245,23 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
           "new_build",
           "private_offer",
+          "needs_finishing",
           "garage",
           "parking",
           "garden",
+          "fenced_area",
           "near_transport",
+          "good_commute",
           "quiet_area",
           "near_forest",
-          "family_friendly",
-          "needs_finishing",
-          "good_commute",
           "suburban",
-          "fenced_area"
+          "family_friendly"
         ],
-        "summary": "Nowy dom dwulokalowy w Nasielsku, 122.3 m², na działce 950 m², blisko lasu i PKP. Idealny dla rodzin, z dobrym dojazdem do Warszawy. Stan deweloperski do wykończenia. Posiada garaż, parking i jest na terenie zamkniętym. Sprzedaż prywatna."
+        "summary": "Nowoczesny dom dwulokalowy (122,3 m², 4 pokoje) w butikowej inwestycji w Nasielsku. Położony w cichej, zalesionej okolicy z dobrym dojazdem do Warszawy (PKP 40 min). Na działce 950 m² z garażem i miejscem parkingowym, do wykończenia. Idealny dla rodzin, oferta prywatna."
       }
     },
     {
@@ -4219,6 +4298,8 @@
         "tags": [
           "premium",
           "very_large",
+          "resale",
+          "developer_offer",
           "private_offer",
           "garage",
           "parking",
@@ -4226,9 +4307,11 @@
           "quiet_area",
           "near_forest",
           "family_friendly",
+          "modern",
+          "suburban",
           "fenced_area"
         ],
-        "summary": "Malownicza agroturystyka z 10 pokojami w Dolinie Baryczy, 40 km od Wrocławia. Nieruchomość premium o powierzchni 343 m², z prywatnym lasem, ogrodem i garażem. Idealna dla rodziny lub jako inwestycja, oferuje prywatność i ciszę blisko natury."
+        "summary": "Malownicza agroturystyka w Dolinie Baryczy, 40 km od Wrocławia. Nieruchomość premium (1.6M PLN) o powierzchni 343 m² z 10 pokojami, na dużej działce z prywatnym lasem i ogrodem. Oferta prywatna, na rynku wtórnym. Posiada garaże i ogrodzony teren, idealna dla rodziny w cichej, zielonej okolicy."
       }
     },
     {
@@ -4262,14 +4345,16 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "small",
+          "resale",
           "private_offer",
-          "garden",
-          "family_friendly",
           "needs_finishing",
-          "fenced_area"
+          "garden",
+          "fenced_area",
+          "family_friendly"
         ],
-        "summary": "Dom wolnostojący w Łowiczu (80m2, 4 pokoje) na dużej, ogrodzonej działce (677m2). Oferta prywatna, do wykończenia. W okolicy sklepy i przedszkole, idealny dla rodziny."
+        "summary": "Dom wolnostojący w Łowiczu, na osiedlu Górki, o powierzchni 80 mkw na działce 677 mkw. Posiada 4 pokoje i wymaga wykończenia. Oferta prywatna z rynku wtórnego, idealna dla rodziny, z terenem zamkniętym i ogrodem."
       }
     },
     {
@@ -4301,18 +4386,19 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "very_large",
+          "resale",
           "needs_finishing",
           "garage",
+          "parking",
           "garden",
           "good_commute",
           "quiet_area",
+          "suburban",
           "family_friendly"
         ],
-        "summary": "Skrajny szereg do wykończenia w Katowicach (230 m², 5 pokoi) z garażem i ogrodem. Cicha, zielona okolica z dobrym dojazdem do centrum, blisko szkoły, przedszkola i Parku Śląskiego. Stan surowy zamknięty.",
-        "warnings": [
-          "Attribute 'Rynek: wtórny' (secondary market) contradicts 'Rok budowy: 2024' (year of construction) and 'Stan wykończenia: do wykończenia' (needs finishing), which typically suggest a new build. Tagging prioritized the explicit 'Rynek' attribute."
-        ]
+        "summary": "Skrajny segment szeregowca w Katowicach, w stanie surowym zamkniętym, idealny do własnej aranżacji. Oferuje 230 m² powierzchni, 5 pokoi, garaż i ogród. Położony w cichej, zielonej okolicy z dobrym dojazdem do centrum i bliskością szkół."
       }
     },
     {
@@ -4348,6 +4434,7 @@
         "tags": [
           "premium",
           "large",
+          "resale",
           "garage",
           "parking",
           "garden",
@@ -4358,7 +4445,7 @@
           "family_friendly",
           "modern"
         ],
-        "summary": "Energooszczędny dom wolnostojący o pow. 185 m² z basenem i dużym, zagospodarowanym ogrodem w Bobrownikach. Idealny dla rodziny, z 5 pokojami, garażem i miejscem parkingowym. Nowoczesny standard, fotowoltaika, pompa ciepła. Bliskość autostrady A1."
+        "summary": "Nowoczesny, przestronny dom wolnostojący (185 m², 5 pokoi) z basenem, dużym ogrodem, garażem i wiatą na samochody. Położony w spokojnej, podmiejskiej okolicy Bobrownik, z dogodnym dojazdem do Katowic. Oferta premium, idealna dla rodziny."
       }
     },
     {
@@ -4388,16 +4475,19 @@
       },
       "gemini": {
         "tags": [
+          "premium",
           "very_large",
-          "modern",
+          "resale",
+          "developer_offer",
           "garage",
           "parking",
           "garden",
           "fenced_area",
           "suburban",
-          "family_friendly"
+          "family_friendly",
+          "modern"
         ],
-        "summary": "Wyjątkowy, przestronny dom wolnostojący w Niebylcu (240m², 5 pokoi) na dużej, ogrodzonej działce 1.08ha. Posiada garaże na 6 aut, parking, fotowoltaikę i monitoring. Nowoczesne wykończenie, idealny dla rodziny, blisko szkoły i żłobka."
+        "summary": "Elegancki dom wolnostojący (240m², 5 pokoi) w Niebylcu, wybudowany w 2013r. na ogrodzonej działce 1.08ha. Wysoki standard, monitoring, fotowoltaika, garaż na 6 aut. Okolica z infrastrukturą dla rodzin (szkoła, żłobek). Cena: 1 650 000 PLN."
       }
     },
     {
@@ -4438,10 +4528,9 @@
           "parking",
           "garden",
           "near_forest",
-          "suburban",
           "family_friendly"
         ],
-        "summary": "Nowy dom wolnostojący o powierzchni 157,43 m² na prestiżowym Osiedlu Malowniczym we Wrocławiu, oferowany przez dewelopera. Posiada 4 pokoje, garaż, parking i przestronny ogród. Standard deweloperski do wykończenia. Zlokalizowany na przedmieściach, blisko Lasu Mokrzańskiego, idealny dla rodzin."
+        "summary": "Nowoczesny, duży dom deweloperski o powierzchni 157 m² z 4 pokojami, w podwyższonym standardzie deweloperskim, do wykończenia. Zlokalizowany we Wrocławiu, blisko Lasu Mokrzańskiego. Oferuje garaż, parking i przestronny ogród. Idealny dla rodziny."
       }
     },
     {
@@ -4475,20 +4564,24 @@
       },
       "gemini": {
         "tags": [
+          "mid_range",
           "medium",
           "new_build",
-          "private_offer",
+          "developer_offer",
+          "needs_finishing",
+          "modern",
           "garage",
           "parking",
           "garden",
           "fenced_area",
           "near_forest",
           "suburban",
-          "family_friendly",
-          "modern",
-          "needs_finishing"
+          "family_friendly"
         ],
-        "summary": "Nowo powstające, ogrodzone osiedle dwulokalowych domów w stanie deweloperskim, idealne dla rodzin. Posiadają garaż, parking, ogród i są blisko lasu. Nowoczesna architektura z dużą ilością przeszkleń. Lokalizacja pod miastem. Ogłoszenie prywatne."
+        "summary": "Wyjątkowy dom na nowo powstającym, ogrodzonym osiedlu pod Brzozami, w stanie deweloperskim. Oferuje 5 pokoi, garaż, ogród i jest przystosowany pod fotowoltaikę i pompy ciepła, blisko lasu.",
+        "warnings": [
+          "Attribute 'Typ ogłoszeniodawcy: prywatny' conflicts with strong evidence for a developer offer (new build estate, multiple units, developer standard)."
+        ]
       }
     },
     {
@@ -4523,17 +4616,19 @@
           "large",
           "new_build",
           "developer_offer",
+          "needs_finishing",
           "garage",
           "parking",
           "garden",
+          "fenced_area",
           "near_transport",
+          "good_commute",
+          "quiet_area",
           "near_forest",
           "family_friendly",
-          "needs_finishing",
-          "suburban",
-          "fenced_area"
+          "suburban"
         ],
-        "summary": "5-pokojowy dom deweloperski o pow. 181m² na warszawskich Młocinach. Posiada ogród i garaż. Wymaga wykończenia. Blisko komunikacji miejskiej i terenów zielonych (Las Bemowo, Kampinoski Park Narodowy). Osiedle zamknięte, idealne dla rodziny."
+        "summary": "5-pokojowy dom w zabudowie bliźniaczej o powierzchni 181 m² na warszawskich Młocinach (dzielnica Bielany), w inwestycji dewelopera DEVELIA. Oferta pierwotna, stan do wykończenia. Posiada ogród, garaż i jest położony na zamkniętym osiedlu. W pobliżu Las Bemowo, Kampinoski Park Narodowy oraz przystanki autobusowe, tramwajowe i stacja metra. Idealny dla rodziny, z dobrym dojazdem do centrum."
       }
     }
   ]

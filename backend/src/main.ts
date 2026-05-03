@@ -2,11 +2,29 @@ import process from 'node:process'
 
 import {config as loadDotenv} from 'dotenv'
 
+import {createLogger} from './infrastructure/logging/logger.js'
 import {createPrismaListingSource} from './infrastructure/persistence/prismaListingSource.js'
 import {startHttpServer} from './presentation/http/server.js'
 
-loadDotenv()
-loadDotenv({path: '.env.local', override: true})
+// dotenv ≥17 logs "injected env (N)…" by default; N is *new* keys only — noisy and misleading when vars come from the shell.
+loadDotenv({quiet: true})
+loadDotenv({path: '.env.local', override: true, quiet: true})
+
+const log = createLogger('startup')
+
+function logStartupSummary(): void {
+    const cwd = process.cwd()
+    const nodeEnv = process.env.NODE_ENV?.trim() || '(unset)'
+    const geminiSet = Boolean(process.env.GEMINI_API_KEY?.trim())
+    const forceMock = process.env.AI_SEARCH_MOCK?.trim() === '1'
+    const aiSearchMode =
+        forceMock || !geminiSet ? 'mock (no Gemini intent)' : 'Gemini'
+
+    log.info(`${process.version} · NODE_ENV=${nodeEnv} · cwd=${cwd}`)
+    log.info(
+        `Listings: MySQL/Prisma · AI search: ${aiSearchMode} · GEMINI_API_KEY=${geminiSet ? 'set' : 'unset'}`,
+    )
+}
 
 function missingDatabaseUrlMessage(): string {
     return [
@@ -31,13 +49,13 @@ async function main(): Promise<void> {
         throw new Error(missingDatabaseUrlMessage())
     }
 
-    console.log('[startup] listings: MySQL via Prisma (filter/paginate in SQL)')
+    logStartupSummary()
     const listingSource = createPrismaListingSource()
     startHttpServer(listingSource)
 }
 
 main().catch((e) => {
     const message = e instanceof Error ? e.message : String(e)
-    console.error('[startup] fatal\n', message)
+    log.error('fatal', message)
     process.exitCode = 1
 })

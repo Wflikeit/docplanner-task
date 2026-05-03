@@ -8,6 +8,7 @@
  * See README: scripts/README-otodom-crawl.md
  */
 import {mkdirSync, writeFileSync} from 'node:fs'
+import {performance} from 'node:perf_hooks'
 import {dirname, join} from 'node:path'
 import {fileURLToPath} from 'node:url'
 import process from "node:process"
@@ -19,6 +20,7 @@ import {
     type OtodomListingSnapshotItem,
     mergeOtodomDetailPayload,
 } from '../src/infrastructure/crawler/otodom/index.js'
+import {createLogger} from '../src/infrastructure/logging/logger.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PLAYWRIGHT_BROWSERS_PATH = join(__dirname, '..', '.pw-browsers')
@@ -39,6 +41,8 @@ const BETWEEN_DETAIL_MS = Number.parseInt(
 
 const LOG_VERBOSE = (process.env.OTODOM_LOG ?? '').toLowerCase() === 'verbose'
 
+const log = createLogger('crawl:otodom', {timestamps: true})
+
 /** Max chars stored for `ldJsonRaw` per listing (full script body can be large). */
 const LD_JSON_RAW_MAX = Math.min(
     2_000_000,
@@ -49,27 +53,6 @@ const MAIN_TEXT_RAW_MAX = Math.min(
     2_000_000,
     Math.max(10_000, Number.parseInt(process.env.OTODOM_MAIN_TEXT_RAW_MAX ?? '500000', 10) || 500_000),
 )
-
-function ts(): string {
-    return new Date().toISOString()
-}
-
-function logInfo(message: string, extra?: unknown): void {
-    const line = `[crawl:otodom] ${ts()} [INFO] ${message}`
-    if (extra !== undefined) console.log(line, extra)
-    else console.log(line)
-}
-
-function logWarn(message: string, extra?: unknown): void {
-    const line = `[crawl:otodom] ${
-        ts()} [WARN] ${message}`
-    if (extra !== undefined) console.warn(line, extra)
-    else console.warn(line)
-}
-
-function logError(message: string, err?: unknown): void {
-    console.error(`[crawl:otodom] ${ts()} [ERROR] ${message}`, err)
-}
 
 const COLLECT_LISTING_URLS_SCRIPT = `(() => {
   var seen = {};
@@ -181,7 +164,7 @@ async function tryAcceptCookies(page: Page): Promise<void> {
             const b = page.getByRole('button', {name: re})
             if (await b.first().isVisible({timeout: 2000})) {
                 await b.first().click({timeout: 3000})
-                logInfo(`Cookies: clicked button matching ${String(re)}`)
+                log.info(`Cookies: clicked button matching ${String(re)}`)
                 await sleep(800)
                 return
             }
@@ -203,13 +186,13 @@ async function collectUrlsFromSearchPages(page: Page): Promise<string[]> {
     const ordered: string[] = []
     const seen = new Set<string>()
 
-    logInfo(
+    log.info(
         `Search: target ${TARGET_COUNT} URLs, up to ${MAX_SEARCH_PAGES} pages (?page=), delay between details ${BETWEEN_DETAIL_MS} ms`,
     )
 
     for (let p = 1; p <= MAX_SEARCH_PAGES && ordered.length < TARGET_COUNT; p++) {
         const url = searchResultsPageUrl(SEARCH_URL, p)
-        logInfo(`Search: opening page ${p} -> ${url}`)
+        log.info(`Search: opening page ${p} -> ${url}`)
         await page.goto(url, {waitUntil: 'domcontentloaded', timeout: 90_000})
         if (p === 1) await tryAcceptCookies(page)
 
@@ -222,11 +205,11 @@ async function collectUrlsFromSearchPages(page: Page): Promise<string[]> {
             if (p === 1) {
                 throw new Error('No listing links on the first search results page.')
             }
-            logWarn(`Search page ${p}: no listing links; stopping URL collection.`)
+            log.warn(`Search page ${p}: no listing links; stopping URL collection.`)
             break
         }
 
-        logInfo(`Search: scrolling page ${p}`)
+        log.info(`Search: scrolling page ${p}`)
         await scrollListingPage(page)
         await sleep(500)
 
@@ -240,17 +223,17 @@ async function collectUrlsFromSearchPages(page: Page): Promise<string[]> {
             if (ordered.length >= TARGET_COUNT) break
         }
 
-        logInfo(
+        log.info(
             `Search: page ${p} - +${newOnPage} new URLs on page, total collected ${ordered.length}/${TARGET_COUNT}`,
         )
         if (newOnPage === 0 && p > 1) {
-            logWarn(`Search page ${p}: no new URLs; stopping pagination.`)
+            log.warn(`Search page ${p}: no new URLs; stopping pagination.`)
             break
         }
     }
 
     const slice = ordered.slice(0, TARGET_COUNT)
-    logInfo(`Search: done - ${slice.length} URLs to fetch as details`)
+    log.info(`Search: done - ${slice.length} URLs to fetch as details`)
     return slice
 }
 
@@ -259,7 +242,7 @@ async function main(): Promise<void> {
     process.env.PLAYWRIGHT_BROWSERS_PATH = PLAYWRIGHT_BROWSERS_PATH
     const {chromium} = await import('playwright')
 
-    logInfo('Start', {
+    log.info('Start', {
         OUT,
         PLAYWRIGHT_BROWSERS_PATH,
         TARGET_COUNT,
@@ -273,7 +256,7 @@ async function main(): Promise<void> {
         headless: true,
         args: ['--disable-blink-features=AutomationControlled'],
     })
-    logInfo('Browser: Chromium launched (headless)')
+    log.info('Browser: Chromium launched (headless)')
     const context = await browser.newContext({
         locale: 'pl-PL',
         timezoneId: 'Europe/Warsaw',
@@ -282,7 +265,7 @@ async function main(): Promise<void> {
             'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
     })
     const page = await context.newPage()
-    logInfo('Context: locale pl-PL, viewport 1365x900')
+    log.info('Context: locale pl-PL, viewport 1365x900')
 
     const listingUrls = await collectUrlsFromSearchPages(page)
     if (listingUrls.length === 0) {
@@ -290,12 +273,12 @@ async function main(): Promise<void> {
         throw new Error('No listing URLs collected.')
     }
     if (listingUrls.length < TARGET_COUNT) {
-        logWarn(
+        log.warn(
             `Collected only ${listingUrls.length} URLs (target ${TARGET_COUNT}); fetching all collected.`,
         )
     }
 
-    logInfo(`Details: processing ${listingUrls.length} listings...`)
+    log.info(`Details: processing ${listingUrls.length} listings...`)
     const now = new Date().toISOString()
     const items: OtodomListingSnapshotItem[] = []
     let ok = 0
@@ -306,12 +289,12 @@ async function main(): Promise<void> {
         const externalId = extractExternalId(listingUrl)
         if (!externalId) {
             fail++
-            logWarn(`[${i + 1}/${listingUrls.length}] missing externalId in URL`, listingUrl)
+            log.warn(`[${i + 1}/${listingUrls.length}] missing externalId in URL`, listingUrl)
             continue
         }
 
         if (LOG_VERBOSE) {
-            logInfo(`[${i + 1}/${listingUrls.length}] → ${externalId}`, listingUrl)
+            log.info(`[${i + 1}/${listingUrls.length}] → ${externalId}`, listingUrl)
         }
 
         try {
@@ -349,13 +332,13 @@ async function main(): Promise<void> {
             items.push(item)
             ok++
             if (LOG_VERBOSE) {
-                logInfo(
+                log.info(
                     `[${i + 1}/${listingUrls.length}] OK ${externalId} | ${item.title.slice(0, 60)} | ${item.priceAmount ?? '—'} PLN`,
                 )
             }
         } catch (e) {
             fail++
-            logWarn(
+            log.warn(
                 `[${i + 1}/${listingUrls.length}] skipped ${externalId}`,
                 (e as Error).message,
             )
@@ -363,7 +346,7 @@ async function main(): Promise<void> {
 
         if ((i + 1) % 10 === 0 || i + 1 === listingUrls.length) {
             const elapsed = ((Date.now() - started) / 1000).toFixed(1)
-            logInfo(
+            log.info(
                 `Progress: ${i + 1}/${listingUrls.length} | ok ${ok} | skipped ${fail} | elapsed ${elapsed}s`,
             )
         }
@@ -371,7 +354,7 @@ async function main(): Promise<void> {
     }
 
     await browser.close()
-    logInfo('Browser: closed')
+    log.info('Browser: closed')
 
     mkdirSync(dirname(OUT), {recursive: true})
     writeFileSync(
@@ -396,12 +379,17 @@ async function main(): Promise<void> {
         'utf8',
     )
     const totalSec = ((Date.now() - started) / 1000).toFixed(1)
-    logInfo(
+    log.info(
         `Wrote file: ${items.length} rows (${ok} ok, ${fail} skipped) in ${totalSec}s -> ${OUT}`,
     )
 }
 
-main().catch((e) => {
-    logError('Crawl script failed', e)
-    process.exit(1)
-})
+const scriptT0 = performance.now()
+main()
+    .then(() => {
+        log.info(`ok · ${Math.round(performance.now() - scriptT0)}ms`)
+    })
+    .catch((e) => {
+        log.error('Crawl script failed', e)
+        process.exit(1)
+    })

@@ -1,7 +1,10 @@
 import express from 'express'
 
 import type { ListingSourcePort } from '../../application/listingSourcePort.js'
+import { createLogger } from '../../infrastructure/logging/logger.js'
 import { registerListingHttpRoutes } from './listingHttpRoutes.js'
+
+const log = createLogger('http')
 
 export function createHttpApp(listingSource: ListingSourcePort): express.Express {
   const app = express()
@@ -27,6 +30,10 @@ export function startHttpServer(
   const host = process.env.LISTEN_HOST?.trim() || '0.0.0.0'
   const app = createHttpApp(listingSource)
   app.listen(port, host, () => {
-    console.log(`API listening (host=${host} port=${port})`)
+    const href =
+      host === '0.0.0.0' || host === '::' ?
+        `http://127.0.0.1:${port}/`
+      : `http://${host}:${port}/`
+    log.info(`HTTP listening · bind ${host}:${port} · open ${href}`)
   })
 }

@@ -23,14 +23,24 @@ export const ListListingsQuerySchema = z
     priceMax: z.optional(scalarNum.pipe(z.number().min(0))),
     rooms: z.optional(scalarNum.pipe(z.number().min(1))),
     roomsMin: z.optional(scalarNum.pipe(z.number().min(1))),
+    /** Comma-separated tag ids (e.g. `near_transport,family_friendly`). */
+    tags: z.optional(scalarStr),
     page: z.optional(scalarNum.pipe(z.number().int().min(1))),
     limit: z.optional(scalarNum.pipe(z.number().int().min(1).max(100))),
   })
-  .transform(({ rooms, roomsMin, page, limit, ...rest }) => ({
-    ...rest,
-    roomsMin: roomsMin ?? rooms,
-    page: page ?? 1,
-    limit: limit ?? DEFAULT_LIMIT,
-  }))
-
-export type ParsedListListingsQuery = z.output<typeof ListListingsQuerySchema>
+  .transform(({ rooms, roomsMin, page, limit, tags, ...rest }) => {
+    const tagList =
+      tags === undefined ?
+        undefined
+      : tags
+            .split(',')
+            .map((t) => t.trim())
+            .filter((t) => t !== '')
+    return {
+      ...rest,
+      roomsMin: roomsMin ?? rooms,
+      page: page ?? 1,
+      limit: limit ?? DEFAULT_LIMIT,
+      tags: tagList !== undefined && tagList.length > 0 ? tagList : undefined,
+    }
+  })

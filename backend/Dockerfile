@@ -14,7 +14,9 @@ RUN npx prisma generate
 
 COPY tsconfig.json tsconfig.build.json tsconfig.base.json ./
 COPY src ./src
-RUN npm run build && npm prune --omit=dev
+# `tsc` does not emit `.md` files — runtime reads prompts next to compiled `dist/infrastructure/ai/*.js`.
+RUN npm run build && npm prune --omit=dev \
+  && cp -r src/infrastructure/ai/prompts dist/infrastructure/ai/prompts
 
 ENV NODE_ENV=production
 EXPOSE 3000

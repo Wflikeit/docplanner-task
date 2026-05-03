@@ -37,6 +37,12 @@ function buildWhere(query: ListListingsQuery): Prisma.ListingWhereInput {
     and.push({ rooms: { gte: query.roomsMin } })
   }
 
+  for (const tag of query.tags ?? []) {
+    and.push({
+      tagsJson: { array_contains: tag },
+    })
+  }
+
   const q = query.q?.trim()
   if (q) {
     and.push({
