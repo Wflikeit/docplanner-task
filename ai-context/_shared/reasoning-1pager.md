@@ -109,6 +109,7 @@ The MVP sits on a **small dataset**, so natural-language or strict filters can e
 - **Search:** more listings; softer geography and ranking when exact filters starve; tags + full-text quality.
 - **AI:** background enrichment jobs; lighter NL pipelines (heuristics first, LLM for the rest); optional gap-fill from text without inferring core numeric facts.
 - **Observability:** coverage metrics, import/list QA views.
+- Use more opinionated framework like NestJS that would enable me to focus more on business logic rather than parsing data
 
 ## Development notes
 
