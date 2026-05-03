@@ -47,32 +47,27 @@ which keeps the system reproducible, debuggable and inexpensive to iterate on.
 
 ### Example A
 
-The user is looking for a house in Mazowieckie with at least 4 rooms.
+The user wants a home in **Warszawa** with at least **four rooms**.
 
-1. The user sets filters:
-    - region: Mazowieckie
-    - rooms: 4+
+1. They enter **Warszawa** under City, set **Min rooms** to **4**, and press **Apply filters**.
+2. The list updates to matching offers.
+3. They open an offer to read the description and see photos.
 
-2. The system returns matching listings from the database.
+**Result:** they narrowed the list using the manual filters only.
 
-3. The user opens a listing detail page to inspect price, description and photos.
+### Example B (AI-assisted search)
 
-Result:
-The user quickly finds a relevant house using structured filters.
+*(Turn on AI-assisted search in configuration if you want this behaviour.)*
 
-### Example B (AI search)
+The user types something like: *“I’m looking for a premium house in the city centre for a family around Warsaw.”*
 
-The user types:
-"I am looking for a premium house in city centre for family around Warszawa"
+1. They press **Enter**. Anything they already entered in the filter panel still counts.
+2. The model interprets the sentence and maps it to **the same kinds of limits as in Example A** — city, price band, room count, optional tags, plus short search keywords where it helps.
+3. They see a brief **assistant message** and the list refreshes.
 
-1. The system sends the message (and current structured filters from the panel) to **`POST /api/listings/ai-search`**.
-2. Gemini returns **`mergedQuery`** — e.g. city / region hints, **`tags`** from the **same id set** as offline tagging (`quiet_area`, `near_forest`, …), optional **`q`** keywords, price hints — plus **`reply`** and the first page of **`listings`**.
-3. The backend merges the patch with active filters and runs the usual **`GET /api/listings`**-style SQL (including **AND** semantics on `tags` when present).
+Tag chips only match listings that **already** had those labels when data was imported; the assistant suggests **filters**, not new labels created on the fly for each row.
 
-**Note:** those tag ids must already exist on rows from **offline tagging** at import time; AI search only **selects** among them as filters, it does not invent new per-row tags at read time.
-
-Result:
-The user gets relevant results without manually setting every filter.
+**Result:** less tedious tweaking of every field, but no “hidden” dimensions beyond what the UI can show.
 
 ## Data sanitization and processing
 
