@@ -63,7 +63,7 @@ The user quickly finds a relevant house using structured filters.
 ### Example B (AI search)
 
 The user types:
-"I want a quiet house near forest, not too expensive, around Warsaw"
+"I am looking for a premium house in city centre for family around Warszawa"
 
 1. The system sends the query to the AI search endpoint.
 2. The model maps the intent to:
@@ -171,16 +171,11 @@ This means:
 
 ## One limitation / failure mode
 
-**External data**
+The MVP operates on a small and limited dataset, which can lead to poor results for natural-language search.
 
-- The MVP depends on data quality from a single external source.
-- Listings may disappear between URL collection and detail-page crawling.
-- Some offers may be incomplete, duplicated or misleading.
+For example, a query like “a premium house near Warsaw” may be mapped to strict filters such as `city = Warsaw`, returning zero results if matching listings are not present.
 
-**Sanitizer vs production scale**
-
-- The sanitizer handles obvious expired pages and missing values.
-- Broader reliability would need stronger source integration, periodic refreshes, better deduplication, retry logic and data quality monitoring.
+This highlights a mismatch between user intent (often vague or regional) and strict filtering on limited data.
 
 ## What we’d improve with more time
 
@@ -194,8 +189,9 @@ This means:
 - Improve deduplication beyond `(source, externalId)` using similarity signals (location, price, area, title).
 
 ### Search & relevance
-- Improve search relevance with better text matching, typo tolerance and ranking.
-- Introduce tag-based filtering to complement structured filters.
+- Import more (and more varied) listings so ordinary searches are less likely to return nothing under strict filters.
+- Improve natural-language → filter mapping for vague or regional intent (e.g. “near Warsaw”), using ranking and softer geography instead of exact equality-only filters when data is thin.
+- Layer tag-based and full-text signals (typo tolerance, better matching) on top of structured filters.
 
 ### AI & enrichment
 - Move AI tagging (currently an offline script) into an asynchronous background process.
