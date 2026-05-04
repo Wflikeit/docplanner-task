@@ -43,19 +43,6 @@ function buildWhere(query: ListListingsQuery): Prisma.ListingWhereInput {
     })
   }
 
-  const q = query.q?.trim()
-  if (q) {
-    and.push({
-      OR: [
-        { title: { contains: q } },
-        { description: { contains: q } },
-        { city: { contains: q } },
-        { district: { contains: q } },
-        { street: { contains: q } },
-      ],
-    })
-  }
-
   if (and.length === 0) return {}
   return { AND: and }
 }

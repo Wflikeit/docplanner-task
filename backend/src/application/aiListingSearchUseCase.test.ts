@@ -2,10 +2,11 @@ import assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
 
 import {
+  applyListingSearchDisplayQFromLastUserMessage,
   buildMockListingSearchIntent,
   clampConversationBlockForLlm,
-  normalizeAiSearchPatchAfterIntent,
 } from './aiListingSearchUseCase.js'
+import { mergeAiSearchIntoListQuery } from './listingAiSearchMerge.js'
 
 describe('clampConversationBlockForLlm', () => {
   it('leaves short blocks unchanged', () => {
@@ -31,44 +32,24 @@ describe('buildMockListingSearchIntent', () => {
   })
 })
 
-describe('normalizeAiSearchPatchAfterIntent', () => {
-  const nl =
-    'segment w dobrej lokalizacji najlepiej centrum'
-
-  it('adds q null when last user message equals active.q and model set tags only', () => {
-    const patch = normalizeAiSearchPatchAfterIntent(
-      [{ role: 'user', content: nl }],
-      { q: nl },
-      { tags: ['city_center'] },
-    )
-    assert.equal(patch.q, null)
-    assert.deepEqual(patch.tags, ['city_center'])
-  })
-
-  it('does not override when model set q explicitly', () => {
-    const patch = normalizeAiSearchPatchAfterIntent(
-      [{ role: 'user', content: nl }],
-      { q: nl },
-      { q: 'segment', tags: ['city_center'] },
-    )
-    assert.equal(patch.q, 'segment')
-  })
-
-  it('does not clear when active.q differs from last user (refine via filters)', () => {
-    const patch = normalizeAiSearchPatchAfterIntent(
-      [{ role: 'user', content: 'add quiet area' }],
-      { q: 'winda', tags: [] },
-      { tags: ['quiet_area'] },
-    )
-    assert.equal(patch.q, undefined)
-  })
-
-  it('does nothing when patch has no structured narrowing', () => {
-    const patch = normalizeAiSearchPatchAfterIntent(
-      [{ role: 'user', content: nl }],
-      { q: nl },
+describe('applyListingSearchDisplayQFromLastUserMessage', () => {
+  it('sets merged q from the last user turn', () => {
+    const merged = mergeAiSearchIntoListQuery(
       {},
+      { tags: ['garden'], q: 'house' },
     )
-    assert.equal(patch.q, undefined)
+    applyListingSearchDisplayQFromLastUserMessage(merged, [
+      { role: 'user', content: 'house for 2 people with dog' },
+    ])
+    assert.equal(merged.q, 'house for 2 people with dog')
+    assert.deepEqual(merged.tags, ['garden'])
+  })
+
+  it('does nothing when last user message is empty', () => {
+    const merged = mergeAiSearchIntoListQuery({}, { q: 'loft' })
+    applyListingSearchDisplayQFromLastUserMessage(merged, [
+      { role: 'user', content: '   ' },
+    ])
+    assert.equal(merged.q, 'loft')
   })
 })

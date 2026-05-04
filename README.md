@@ -53,7 +53,9 @@ The user wants a home in **Warszawa** with at least **four rooms**. They set Cit
 
 *(AI-assisted mode must be enabled in app configuration.)*
 
-ex: "big house in Warszawa near forest"
+ex1: "big house not in the city centre for family of 4"
+ex2: "house for 2 people with dog"
+ex2: "finished house for a family of four with dog"
 
 They describe what they want in natural language and submit. The model maps that to **the same dimensions as Example A** (city, price, rooms, optional tags, keywords). They see a short assistant message and an updated list. Tag filters only match listings **already labeled at import**; the assistant suggests filters, not new per-row labels at read time. **Result:** less typing, still nothing beyond what the UI can express.
 

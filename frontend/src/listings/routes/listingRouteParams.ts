@@ -102,8 +102,8 @@ export function draftToActiveFiltersWire(
 
 /**
  * Payload for `POST /api/listings/ai-search`: structured filters only.
- * Never sends `q` — the user’s wording lives in `messages`; SQL `q` is substring match on listings
- * and must come only from the model patch (short keywords), not from the chat box.
+ * Never sends `q` in `activeFilters` — the user’s wording lives in `messages`; the server echoes it
+ * into `mergedQuery.q` for the URL. Listing rows are not filtered by free-text `q` in the DB.
  */
 export function draftToActiveFiltersForAiSearch(
   draft: Pick<

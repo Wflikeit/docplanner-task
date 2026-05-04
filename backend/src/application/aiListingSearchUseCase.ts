@@ -5,8 +5,6 @@ import type { ListingSourcePort } from './listingSourcePort.js'
 import { listListingsPage } from './listingUseCases.js'
 import {
   type AiListingSearchActiveFilters,
-  type AiListingSearchModelPatch,
-  filterToAllowedTags,
   mergeAiSearchIntoListQuery,
 } from './listingAiSearchMerge.js'
 import type { GeminiListingSearchIntent } from '../infrastructure/ai/listingAiSearchGemini.js'
@@ -65,12 +63,13 @@ export async function runAiListingSearchWithMock(
   const intent = buildMockListingSearchIntent(messages)
   const { reply, ...patch } = intent
   const mergedQuery = mergeAiSearchIntoListQuery(active, patch)
+  applyListingSearchDisplayQFromLastUserMessage(mergedQuery, messages)
   const listingsPage = await listListingsPage(listingSource, mergedQuery)
   return { reply, mergedQuery, listingsPage }
 }
 
 // -----------------------------------------------------------------------------
-// Gemini — build LLM input → intent JSON → normalize patch → merge → list
+// Gemini — build LLM input → intent JSON → merge → list
 // -----------------------------------------------------------------------------
 
 export async function runAiListingSearchWithGemini(
@@ -91,8 +90,8 @@ export async function runAiListingSearchWithGemini(
         conversationBlock: conversationBlockClamped,
     })
     const { reply, ...patch } = intent
-    const patchNorm = normalizeAiSearchPatchAfterIntent(messages, active, patch)
-    const mergedQuery = mergeAiSearchIntoListQuery(active, patchNorm)
+    const mergedQuery = mergeAiSearchIntoListQuery(active, patch)
+    applyListingSearchDisplayQFromLastUserMessage(mergedQuery, messages)
     const listingsPage = await listListingsPage(listingSource, mergedQuery)
     return { reply, mergedQuery, listingsPage }
 }
@@ -119,36 +118,16 @@ export function clampConversationBlockForLlm(
   return `${block.slice(0, maxChars)}\n\n[…truncated: exceeded ${maxChars} characters]`
 }
 
-function modelReturnedStructuredSearchWithoutQ(
-  patch: AiListingSearchModelPatch,
-): boolean {
-  if (typeof patch.city === 'string' && patch.city.trim() !== '') return true
-  if (typeof patch.priceMin === 'number') return true
-  if (typeof patch.priceMax === 'number') return true
-  if (typeof patch.roomsMin === 'number') return true
-  if (patch.tags !== undefined && patch.tags !== null) {
-    return filterToAllowedTags(patch.tags).length > 0
-  }
-  return false
-}
-
 /**
- * Gemini returned structured filters but omitted `q`. The UI often puts the same natural-language
- * sentence in `active.q` as in the last user message; SQL `q` is substring match on title/body,
- * so leaving it AND'd with tags yields zero rows. Clear `q` in that case.
+ * Fills `mergedQuery.q` with the latest user turn so the client URL and search box match what
+ * they typed. Listing rows are filtered only by city, price, rooms, and tags — not by `q`.
  */
-export function normalizeAiSearchPatchAfterIntent(
+export function applyListingSearchDisplayQFromLastUserMessage(
+  merged: ListListingsQuery,
   messages: AiChatTurn[],
-  active: AiListingSearchActiveFilters,
-  patch: AiListingSearchModelPatch,
-): AiListingSearchModelPatch {
-  if (patch.q !== undefined) return patch
-  const activeQ = active.q?.trim() ?? ''
-  if (activeQ === '') return patch
+): void {
   const lastUser = [...messages].reverse().find((m) => m.role === 'user')
-  const lastText = lastUser?.content?.trim() ?? ''
-  if (lastText === '' || lastText !== activeQ) return patch
-  if (!modelReturnedStructuredSearchWithoutQ(patch)) return patch
-  return { ...patch, q: null }
+  const t = lastUser?.content?.trim()
+  if (t !== undefined && t !== '') merged.q = t
 }
 
