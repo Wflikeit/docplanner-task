@@ -163,7 +163,6 @@ function msSince(t0: number): string {
 }
 
 function aiSearchRuntimeMode(): 'mock' | 'gemini' {
-  if (process.env.AI_SEARCH_MOCK?.trim() === '1') return 'mock'
   if (!process.env.GEMINI_API_KEY?.trim()) return 'mock'
   return 'gemini'
 }

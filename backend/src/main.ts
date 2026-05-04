@@ -16,9 +16,7 @@ function logStartupSummary(): void {
     const cwd = process.cwd()
     const nodeEnv = process.env.NODE_ENV?.trim() || '(unset)'
     const geminiSet = Boolean(process.env.GEMINI_API_KEY?.trim())
-    const forceMock = process.env.AI_SEARCH_MOCK?.trim() === '1'
-    const aiSearchMode =
-        forceMock || !geminiSet ? 'mock (no Gemini intent)' : 'Gemini'
+    const aiSearchMode = geminiSet ? 'Gemini' : 'mock (no GEMINI_API_KEY)'
 
     log.info(`${process.version} · NODE_ENV=${nodeEnv} · cwd=${cwd}`)
     log.info(

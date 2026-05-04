@@ -1,5 +1,7 @@
 # Backend (listings MVP)
 
+Full setup (env, Docker, import, pipeline): [root README — SETUP](../README.md#setup).
+
 ## Source of truth
 
 **Processed JSON files are not runtime data sources.** They are intermediate artifacts used by the import script (`npm run db:import` / `npm run import:otodom:mysql`). Once imported, **MySQL is the source of truth** for the running application.
@@ -13,7 +15,7 @@ The HTTP server **only** reads listings from MySQL via Prisma. It requires **`DA
 ## Setup
 
 1. **MySQL** — e.g. from repo root: `docker compose up -d` (see `../docker-compose.yaml`).
-2. **`DATABASE_URL`** in `backend/.env` or `.env.local` (see `.env.example`).
+2. **`DATABASE_URL`** in **`backend/.env.local`** (copy from `.env.example`; gitignored).
 3. **Import** — `npm run import:otodom:mysql` (needs sanitized JSON paths as in `scripts/README-otodom-mysql-import.md`).
 
 Offline steps before import (optional / as needed):

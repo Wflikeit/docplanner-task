@@ -25,17 +25,15 @@ export type AiListingSearchRunResult = {
 }
 
 /**
- * Gemini when `GEMINI_API_KEY` is set and `AI_SEARCH_MOCK` is not `1`; otherwise mock
- * (no API calls).
+ * Gemini when `GEMINI_API_KEY` is set; otherwise mock (no API calls).
  */
 export async function runAiListingSearch(
   listingSource: ListingSourcePort,
   messages: AiChatTurn[],
   active: AiListingSearchActiveFilters,
 ): Promise<AiListingSearchRunResult> {
-  const forceMock = process.env.AI_SEARCH_MOCK?.trim() === '1'
   const apiKey = process.env.GEMINI_API_KEY?.trim()
-  if (forceMock || !apiKey) {
+  if (!apiKey) {
     return runAiListingSearchWithMock(listingSource, messages, active)
   }
   return runAiListingSearchWithGemini(listingSource, messages, active, apiKey)
@@ -45,13 +43,13 @@ export async function runAiListingSearch(
 // Mock — stub intent, same merge + list as production
 // -----------------------------------------------------------------------------
 
-/** Stub when `GEMINI_API_KEY` is missing or `AI_SEARCH_MOCK=1`: no filter heuristics — use real Gemini for intent. */
+/** Stub when `GEMINI_API_KEY` is missing: no filter heuristics — use real Gemini for intent. */
 export function buildMockListingSearchIntent(messages: AiChatTurn[]): GeminiListingSearchIntent {
   const lastUser = [...messages].reverse().find((m) => m.role === 'user')
 
   const mockReply =
     lastUser?.content?.trim() ?
-      `[mock AI] Set \`GEMINI_API_KEY\` (and unset \`AI_SEARCH_MOCK\`) for real intent parsing. Preview: “${lastUser.content.trim().slice(0, 80)}${lastUser.content.length > 80 ? '…' : ''}”.`
+      `[mock AI] Set \`GEMINI_API_KEY\` for real intent parsing. Preview: “${lastUser.content.trim().slice(0, 80)}${lastUser.content.length > 80 ? '…' : ''}”.`
     : '[mock AI] Describe what you are looking for; with a real API key the model maps intent to filters and tags.'
 
   return {

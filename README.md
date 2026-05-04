@@ -1,5 +1,30 @@
 # 1-pager reasoning (MVP)
 
+## SETUP
+
+Prereqs: Node 22+, npm, Docker Compose. Extra env / paths: [`backend/.env.example`](backend/.env.example) comments + `backend/scripts/README-otodom-*.md`.
+
+**Env (`backend/.env.local`)**
+
+1. Copy [`backend/.env.example`](backend/.env.example) → **`backend/.env.local`**.
+2. Set **`DATABASE_URL`** for host import / `npm run dev`, e.g. `mysql://app:app@127.0.0.1:3306/real_estate` (use `127.0.0.1`, not hostname `mysql`).
+3. Set **`GEMINI_API_KEY`** before offline tagging (`tag:otodom:gemini`) and if you want real AI search in the UI (otherwise mock).
+
+**Offline pipeline** (from `backend/`, slow)
+
+1. `npm install`
+2. `npm run crawl:otodom:install` (once)
+3. `npm run crawl:otodom`
+4. `npm run sanitize:otodom`
+5. `npm run tag:otodom:gemini`
+6. `npm run import:otodom:mysql` (`db:import`)
+
+**Docker + rows in DB**
+
+1. Repo root: `docker compose up --build` — wait until **`prisma-migrate`** finishes (schema only; no listing rows).
+2. `cd backend && npm ci && npm run import:otodom:mysql` (same **`DATABASE_URL`** as in `.env.local`). Uses `backend/data/processed/*.json` unless you ran the offline pipeline above.
+3. App: **http://localhost:18080**
+
 ## Gathering data
 
 I built a crawler that collects Otodom listings and stores **raw JSON snapshots** on disk. It runs ahead of the app (not on user requests), gathers URLs then detail pages with Playwright, and prefers **Schema.org JSON-LD** over brittle DOM scraping; page text stays mainly as fallback and audit material.
@@ -27,6 +52,8 @@ The user wants a home in **Warszawa** with at least **four rooms**. They set Cit
 ### Example B (AI-assisted search)
 
 *(AI-assisted mode must be enabled in app configuration.)*
+
+ex: "big house in Warszawa near forest"
 
 They describe what they want in natural language and submit. The model maps that to **the same dimensions as Example A** (city, price, rooms, optional tags, keywords). They see a short assistant message and an updated list. Tag filters only match listings **already labeled at import**; the assistant suggests filters, not new per-row labels at read time. **Result:** less typing, still nothing beyond what the UI can express.
 
